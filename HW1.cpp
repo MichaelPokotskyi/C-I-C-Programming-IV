@@ -10,16 +10,19 @@
 //                  string & algorithm
 //                  vector & algorithm
 
+using namespace std;
+
 #include <iostream>
 #include <algorithm>
 #include <deque>
 #include <string>
 #include <vector>
-#include <iterator> // back_inserter
-#include <numeric> // accumulate
-#include <sstream> // ostringstream
-
-using namespace std;
+// back_inserter
+#include <iterator>
+// accumulate
+#include <numeric> 
+// ostringstream
+#include <sstream> 
 
 class Numbers {
 public:
