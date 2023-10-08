@@ -253,7 +253,7 @@ void testQueuePop() {
         tempQ.push(SECOND_INPUT);
         if (tempQ.front() == FIRST_INPUT)
             tempQ.pop();
-        // test FIRST_INPUT was successfully removed
+        // test if FIRST_INPUT was removed
         if (tempQ.front() == SECOND_INPUT)
             clog << "testQueuePop test PASSED\n";
     }
