@@ -5,14 +5,11 @@
 // Raymond Mitchell IV
 // HW2.cpp
 // Win10, Visual C++ 2022, ISO C17
-
 // Implement Queue container for HW2, queue elements stored in v_ buffer
-
 
 #include <iostream>
 #include <cassert>
 #include <exception>
-
 using namespace std;
 
 template <typename T>
@@ -105,7 +102,7 @@ Queue<T>::pop() {
         size_t vsize_new = vused_ - 1;
         T* v_new = newCopy(v_ + 1, vsize_new, vsize_);
         delete[] v_;
-        // replacing with popped array
+        // replacing with changed array
         v_ = v_new;
         // -- after removal
         --vused_;
@@ -143,7 +140,6 @@ Queue<T>::size() const {
 }
 //**********//
 //All tests://
-//**********//
 void testQueueConstructor() {
     try {
         Queue<int> tempQ;
@@ -266,74 +262,75 @@ void testQueuePop() {
     }
 }
 void testQueueFront() {
-    Queue<int> tempQueue;
+    Queue<int> tempQ;
     const int VALID_VALUE = 1;
-    tempQueue.push(VALID_VALUE);
+    tempQ.push(VALID_VALUE);
     try {
-        const int* TEST_VALUE = &(tempQueue.front());
+        const int* TEST_VALUE = &(tempQ.front());
         if (*TEST_VALUE == VALID_VALUE)
-            clog << "testQueueFront PASSED\n";
+            clog << "testQueueFront test PASSED\n";
         else
-            clog << "testQueueFront FAILED : Expected value  "
-            << VALID_VALUE << " instead saw " << TEST_VALUE << "\n";
+            clog << "testQueueFront test FAILED -> Expected output "
+            << VALID_VALUE << " but instead have " << TEST_VALUE << "\n";
     }
     catch (...) {
-        clog << "testQueueFront FAILED\n";
+        clog << "testQueueFront test FAILED\n";
     }
 }
 void testQueueFrontConst() {
-    Queue<int> tempQueue;
+    Queue<int> tempQ;
     const int VALID_VALUE = 1;
-    tempQueue.push(VALID_VALUE);
+    tempQ.push(VALID_VALUE);
     try {
-        const int* TEST_VALUE = &(tempQueue.front());
+        const int* TEST_VALUE = &(tempQ.front());
         if (*TEST_VALUE == VALID_VALUE)
-            clog << "testQueueFrontConst PASSED\n";
+            clog << "testQueueFrontConst test PASSED\n";
         else
-            clog << "testQueueFrontConst FAILED : Expected value  "
-            << VALID_VALUE << " instead saw " << TEST_VALUE << "\n";
+            clog << "testQueueFrontConst test FAILED -> Expected output "
+            << VALID_VALUE << " but instead have " << TEST_VALUE << "\n";
     }
     catch (...) {
-        clog << "testQueueFrontConst FAILED\n";
+        clog << "testQueueFrontConst test FAILED\n";
     }
 }
 void testQueueEmpty() {
-    Queue<int> tempQueue;
+    Queue<int> tempQ0;
     const int VALID_VALUE = 1;
-    tempQueue.push(VALID_VALUE);
-    tempQueue.push(VALID_VALUE);
+    tempQ0.push(VALID_VALUE);
+    tempQ0.push(VALID_VALUE);
     const int VALID_SIZE = 2;
     try {
-        Queue<int> tempQueue2;
-        if ((tempQueue2.empty()) && (!tempQueue.empty()))
-            clog << "testQueueEmpty PASSED\n";
+        Queue<int> tempQ1;
+        if ((tempQ1.empty()) && (!tempQ0.empty()))
+            clog << "testQueueEmpty test PASSED\n";
         else
-            clog << "testQueueEmpty FAILED\n";
+            clog << "testQueueEmpty test FAILED\n";
     }
     catch (...) {
-        clog << "testQueueEmpty FAILED\n";
+        clog << "testQueueEmpty test FAILED\n";
     }
 }
 void testQueueSize() {
-    Queue<int> tempQueue;
+    Queue<int> tempQ;
     const int VALID_VALUE = 1;
-    tempQueue.push(VALID_VALUE);
-    tempQueue.push(VALID_VALUE);
+    tempQ.push(VALID_VALUE);
+    tempQ.push(VALID_VALUE);
     const int VALID_SIZE = 2;
     try {
-        const int TEST_VALUE = tempQueue.size();
+        const int TEST_VALUE = tempQ.size();
         if (TEST_VALUE == VALID_SIZE)
-            clog << "testQueueSize PASSED\n";
+            clog << "testQueueSize test PASSED\n";
         else
-            clog << "testQueueSize FAILED : Expected value  "
-            << VALID_VALUE << " instead saw " << VALID_SIZE << "\n";
+            clog << "testQueueSize FAILED -> Expected output "
+            << VALID_VALUE << " but instead have " << VALID_SIZE << "\n";
     }
     catch (...) {
-        clog << "testQueueSize FAILED\n";
+        clog << "testQueueSize test FAILED\n";
     }
 }
 
 int main(void) {
+    // running test cases
     testQueueConstructor();       // test Queue<T>::Queue()
     testQueueDestructor();        // test Queue<T>::~Queue()
     testQueueCopyConstructor();   // test Queue<T>::Queue(const Queue &)
