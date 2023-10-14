@@ -140,27 +140,27 @@ Queue<T>::size() const {
 }
 //**********//
 //All tests://
-void testQueueConstructor() {
+void QueueConstructor() {
     try {
         Queue<int> tempQ;
-        clog << "testQueueConstructor test PASSED\n";
+        clog << "QueueConstructor test PASSED\n";
     }
     catch (...) {
-        clog << "testQueueConstructor test FAILED\n";
+        clog << "QueueConstructor test FAILED\n";
     }
 }
-void testQueueDestructor() {
+void QueueDestructor() {
     Queue<int>* testQ = new Queue<int>;
     try {
         delete testQ;
-        clog << "testQueueDestructor test PASSED\n";
+        clog << "QueueDestructor test PASSED\n";
     }
     catch (...) {
         Queue<int> tempQ;
-        clog << "testQueueDestructor test FAILED\n";
+        clog << "QueueDestructor test FAILED\n";
     }
 }
-void testQueueCopyConstructor() {
+void QueueCopyConstructor() {
     Queue<int> sourceQ;
     const int VALID_INPUT = 50;
     const int NUMBER_ELEMENTS = 5;
@@ -174,18 +174,18 @@ void testQueueCopyConstructor() {
                 sourceQ.pop(); copyQueue.pop();
             }
             else {
-                clog << "testQueueCopyConstructor test FAILED -> Expected output "
+                clog << "QueueCopyConstructor test FAILED -> Expected output "
                     << sourceQ.front() << " but instead have "
                     << copyQueue.front() << "\n";
             }
         }
-        clog << "testQueueCopyConstructor test PASSED\n";
+        clog << "QueueCopyConstructor test PASSED\n";
     }
     catch (...) {
-        clog << "testQueueCopyConstructor test FAILED\n";
+        clog << "QueueCopyConstructor test FAILED\n";
     }
 }
-void testQueueCopyAssignment() {
+void QueueCopyAssignment() {
     Queue<int> sourceQ;
     const int VALID_INPUT = 50;
     const int NUMBER_ELEMENTS = 5;
@@ -199,18 +199,18 @@ void testQueueCopyAssignment() {
                 sourceQ.pop(); copyQueue.pop();
             }
             else {
-                clog << "testQueueCopyAssignment test FAILED -> Expected output "
+                clog << "QueueCopyAssignment test FAILED -> Expected output "
                     << sourceQ.front() << " but instead have " <<
                     copyQueue.front() << "\n";
             }
         }
-        clog << "testQueueCopyAssignment test PASSED\n";
+        clog << "QueueCopyAssignment test PASSED\n";
     }
     catch (...) {
-        clog << "testQueueCopyAssignment test FAILED\n";
+        clog << "QueueCopyAssignment test FAILED\n";
     }
 }
-void testQueuePush() {
+void QueuePush() {
     Queue<int> tempQ;
     try {
         const int INPUT = 1;
@@ -219,31 +219,31 @@ void testQueuePush() {
         for (int i = 0; i < ORIG_SIZE; ++i) {
             tempQ.push(i * INPUT);
         }
-        clog << "testQueuePush test PASSED\n";
+        clog << "QueuePush test PASSED\n";
         // add one more elem to check
         tempQ.push(INPUT);
         // checking
         if (tempQ.size() == NEW_SIZE)
-            clog << "testQueuePush test PASSED\n";
+            clog << "QueuePush test PASSED\n";
         else
-            clog << "testQueuePush test FAILED -> Expected output "
+            clog << "QueuePush test FAILED -> Expected output "
             << NEW_SIZE << " but instead have " << tempQ.size() << "\n";
     }
     catch (...) {
-        clog << "testQueuePush test FAILED\n";
+        clog << "QueuePush test FAILED\n";
     }
 }
-void testQueuePop() {
+void QueuePop() {
     Queue<int> tempQ;
     try {
         tempQ.pop();
-        clog << "testQueuePop empty test FAILED\n";
+        clog << "QueuePop empty test FAILED\n";
     }
     catch (exception& e) {
         if (strcmp(e.what(), "Has an empty Queue!") == 0)
-            clog << "testQueuePop empty test PASSED\n";
+            clog << "QueuePop empty test PASSED\n";
         else
-            clog << "testQueuePop empty test FAILED -> Expected different output\n";
+            clog << "QueuePop empty test FAILED -> Expected different output\n";
     }
     //test succes
     try {
@@ -255,45 +255,45 @@ void testQueuePop() {
             tempQ.pop();
         // test if FIRST_INPUT was removed
         if (tempQ.front() == SECOND_INPUT)
-            clog << "testQueuePop test PASSED\n";
+            clog << "QueuePop test PASSED\n";
     }
     catch (...) {
-        clog << "testQueuePop test FAILED\n";
+        clog << "QueuePop test FAILED\n";
     }
 }
-void testQueueFront() {
+void QueueFront() {
     Queue<int> tempQ;
     const int VALID_VALUE = 1;
     tempQ.push(VALID_VALUE);
     try {
         const int* TEST_VALUE = &(tempQ.front());
         if (*TEST_VALUE == VALID_VALUE)
-            clog << "testQueueFront test PASSED\n";
+            clog << "QueueFront test PASSED\n";
         else
-            clog << "testQueueFront test FAILED -> Expected output "
+            clog << "QueueFront test FAILED -> Expected output "
             << VALID_VALUE << " but instead have " << TEST_VALUE << "\n";
     }
     catch (...) {
-        clog << "testQueueFront test FAILED\n";
+        clog << "QueueFront test FAILED\n";
     }
 }
-void testQueueFrontConst() {
+void QueueFrontConst() {
     Queue<int> tempQ;
     const int VALID_VALUE = 1;
     tempQ.push(VALID_VALUE);
     try {
         const int* TEST_VALUE = &(tempQ.front());
         if (*TEST_VALUE == VALID_VALUE)
-            clog << "testQueueFrontConst test PASSED\n";
+            clog << "QueueFrontConst test PASSED\n";
         else
-            clog << "testQueueFrontConst test FAILED -> Expected output "
+            clog << "QueueFrontConst test FAILED -> Expected output "
             << VALID_VALUE << " but instead have " << TEST_VALUE << "\n";
     }
     catch (...) {
-        clog << "testQueueFrontConst test FAILED\n";
+        clog << "QueueFrontConst test FAILED\n";
     }
 }
-void testQueueEmpty() {
+void QueueEmpty() {
     Queue<int> tempQ0;
     const int VALID_VALUE = 1;
     tempQ0.push(VALID_VALUE);
@@ -302,15 +302,15 @@ void testQueueEmpty() {
     try {
         Queue<int> tempQ1;
         if ((tempQ1.empty()) && (!tempQ0.empty()))
-            clog << "testQueueEmpty test PASSED\n";
+            clog << "QueueEmpty test PASSED\n";
         else
-            clog << "testQueueEmpty test FAILED\n";
+            clog << "QueueEmpty test FAILED\n";
     }
     catch (...) {
-        clog << "testQueueEmpty test FAILED\n";
+        clog << "QueueEmpty test FAILED\n";
     }
 }
-void testQueueSize() {
+void QueueSize() {
     Queue<int> tempQ;
     const int VALID_VALUE = 1;
     tempQ.push(VALID_VALUE);
@@ -319,26 +319,26 @@ void testQueueSize() {
     try {
         const int TEST_VALUE = tempQ.size();
         if (TEST_VALUE == VALID_SIZE)
-            clog << "testQueueSize test PASSED\n";
+            clog << "QueueSize test PASSED\n";
         else
-            clog << "testQueueSize FAILED -> Expected output "
+            clog << "QueueSize FAILED -> Expected output "
             << VALID_VALUE << " but instead have " << VALID_SIZE << "\n";
     }
     catch (...) {
-        clog << "testQueueSize test FAILED\n";
+        clog << "QueueSize test FAILED\n";
     }
 }
 
 int main(void) {
     // running test cases
-    testQueueConstructor();       // test Queue<T>::Queue()
-    testQueueDestructor();        // test Queue<T>::~Queue()
-    testQueueCopyConstructor();   // test Queue<T>::Queue(const Queue &)
-    testQueueCopyAssignment();    // test Queue<T>::operator=(const Queue &)
-    testQueuePush();              // test Queue<T>::push(const T &)
-    testQueuePop();               // test Queue<T>::pop()
-    testQueueFront();             // test Queue<T>::front()
-    testQueueFrontConst();        // test Queue<T>::front() const
-    testQueueEmpty();             // test Queue<T>::empty() const
-    testQueueSize();              // test Queue<T>::size() const
+    QueueConstructor();       // test Queue<T>::Queue()
+    QueueDestructor();        // test Queue<T>::~Queue()
+    QueueCopyConstructor();   // test Queue<T>::Queue(const Queue &)
+    QueueCopyAssignment();    // test Queue<T>::operator=(const Queue &)
+    QueuePush();              // test Queue<T>::push(const T &)
+    QueuePop();               // test Queue<T>::pop()
+    QueueFront();             // test Queue<T>::front()
+    QueueFrontConst();        // test Queue<T>::front() const
+    QueueEmpty();             // test Queue<T>::empty() const
+    QueueSize();              // test Queue<T>::size() const
 }
