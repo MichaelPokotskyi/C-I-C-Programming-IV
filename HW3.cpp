@@ -5,191 +5,182 @@
 // Raymond Mitchell IV
 // HW2.cpp
 // Win10, Visual C++ 2022, ISO C17
-
 // Stream Processing Algorithm implementation
 
 #include <iostream>
 #include <sstream>
-#include <cctype> // isdigit, toupper
 #include <string>
-#include <algorithm>  // transform
-#include <exception>
+#include <algorithm>
 using namespace std;
 
 class StreamProcessorAlgorithm {
 public:
-    //Default Constructor
+    // constructor
     StreamProcessorAlgorithm(istream& in, ostream& out) :in_(in), out_(out) {
     }
+    // destructor
     virtual ~StreamProcessorAlgorithm() {
     }
     void process();
 private:
     virtual bool filterToken(const string& token) const = 0;
     virtual void processToken(string& token) const = 0;
-    istream& in_;
-    ostream& out_;
+    istream& in_; // input stream by reference
+    ostream& out_; // output stream by reference
 };
-
 void StreamProcessorAlgorithm::process() {
-    // For each whitespace separated string (token) read from the input stream:
+    // for each whitespace separated string (token) read from the input stream:
     while (in_) {
         string token;
-        //extract input stream in to string
         in_ >> token;
-        // If the token passes through the filter
+        // if the token passes through the filter (filterToken() returns TRUE)
         if (filterToken(token)) {
-            // Process the token and output it to the output stream
+            // process the token and output it to the output stream
             processToken(token);
             out_ << token;
         }
     }
 }
-
-// Stream Processing Algorithm to Upper Case ALL input tokens
+// UppercasingSPA 
 class UppercasingSPA : public StreamProcessorAlgorithm {
 public:
+    // constructor
     UppercasingSPA(istream& in, ostream& out):StreamProcessorAlgorithm(in, out) {
     }
+    // destructor
     ~UppercasingSPA() {
     }
 private:
     bool filterToken(const string& token) const {
-        // Allows ALL tokens to pass through
+        // all tokens will pass
         return true;
     }
     void processToken(string& token) const {
+        // all to uppercase
         transform(token.begin(), token.end(), token.begin(), toupper);
     }
 };
-
-// Stream Processing Algorithm to strip out digits from input token
+// DigitStrippingSPA
 class DigitStrippingSPA : public StreamProcessorAlgorithm {
 public:
+    // constructor
     DigitStrippingSPA(istream& in, ostream& out) :StreamProcessorAlgorithm(in, out) {
     }
+    // destructor
     ~DigitStrippingSPA() {
     }
 private:
     bool filterToken(const string& token) const {
-        // Allows tokens containing at least one digit to pass through
+        // at least one digit to pass
         return find_if(token.begin(), token.end(), isdigit) != token.end();
     }
     void processToken(string& token) const {
-        // Erase character from string if it is a digit
+        // remove digits from string
         token.erase(remove_if(token.begin(), token.end(), isdigit), token.end());
     }
 };
-// Unit Tests:
+//**********//
+//All tests://
 void UppercasingSPAConstructor() {
     try {
         UppercasingSPA testSPA(cin, cout);
-        clog << "testUppercasingSPAConstructor PASSED\n";
+        clog << "UppercasingSPAConstructor test PASSED\n";
     }
     catch (...) {
-        clog << "testUppercasingSPAConstructor FAILED\n";
+        clog << "UppercasingSPAConstructor test FAILED\n";
     }
 }
 void UppercasingSPADestructor() {
     UppercasingSPA* testSPA = new UppercasingSPA(cin, cout);
     try {
         delete testSPA;
-        clog << "testUppercasingSPADestructor PASSED\n";
+        clog << "UppercasingSPADestructor test PASSED\n";
     }
     catch (...) {
-        clog << "testUppercasingSPADestructor FAILED\n";
+        clog << "UppercasingSPADestructor test FAILED\n";
     }
 }
-// "standard" input
-void UppercasingSPAProcess1() {
-    const string TEST_INPUT = "This is my 1st Test!";
-    const string VALID_OUTPUT = "THISISMY1STTEST!";
+void UppercasingSPAProcessOne() {
+    const string TEST_INPUT = "this is a test string";
+    const string VALID_OUTPUT = "THISISATESTSTRING";
     istringstream testInputStream(TEST_INPUT);
     ostringstream testOutputStream;
     UppercasingSPA testUpper(testInputStream, testOutputStream);
     testUpper.process();
-    // Check if expected output is present
     if (testOutputStream.str().compare(VALID_OUTPUT) == 0)
-        clog << "testUppercasingSPAProcess1 PASSED\n";
+        clog << "UppercasingSPAProcessOne test PASSED\n";
     else
-        clog << "testUppercasingSPAProcess1 FAILED : Expected output "
-        << VALID_OUTPUT << " instead saw " << testOutputStream.str() << "\n";
+        clog << "UppercasingSPAProcessOne test FAILED -> Expected output "
+        << VALID_OUTPUT << " but instead have " << testOutputStream.str() << "\n";
 }
-// non-alpha character input
-void UppercasingSPAProcess2() {
-    const string TEST_INPUT = "1232$*)(_*1543!";
-    const string VALID_OUTPUT = TEST_INPUT;
+void UppercasingSPAProcessTwo() {
+    const string TEST_INPUT = "1234567890!?()*&_+=abcdef";
+    const string VALID_OUTPUT = "1234567890!?()*&_+=ABCDEF";
     istringstream testInputStream(TEST_INPUT);
     ostringstream testOutputStream;
     UppercasingSPA testUpper(testInputStream, testOutputStream);
     testUpper.process();
-    // Check if expected output is present
     if (testOutputStream.str().compare(VALID_OUTPUT) == 0)
-        clog << "testUppercasingSPAProcess2 PASSED\n";
+        clog << "UppercasingSPAProcessTwo test PASSED\n";
     else
-        clog << "testUppercasingSPAProcess2 FAILED : Expected output "
-        << VALID_OUTPUT << " instead saw " << testOutputStream.str() << "\n";
+        clog << "UppercasingSPAProcessTwo test FAILED -> Expected output "
+        << VALID_OUTPUT << " but instead have " << testOutputStream.str() << "\n";
 }
 void DigitStrippingSPAConstructor() {
     try {
         DigitStrippingSPA testSPA(cin, cout);
-        clog << "testDigitStrippingSPAConstructor PASSED\n";
+        clog << "DigitStrippingSPAConstructor test PASSED\n";
     }
     catch (...) {
-        clog << "testDigitStrippingSPAConstructor FAILED\n";
+        clog << "DigitStrippingSPAConstructor test FAILED\n";
     }
 }
 void DigitStrippingSPADestructor() {
     DigitStrippingSPA* testSPA = new DigitStrippingSPA(cin, cout);
     try {
         delete testSPA;
-        clog << "testDigitStrippingSPADestructor PASSED\n";
+        clog << "DigitStrippingSPADestructor test PASSED\n";
     }
     catch (...) {
-        clog << "testDigitStrippingSPADestructor FAILED\n";
+        clog << "DigitStrippingSPADestructor test FAILED\n";
     }
 }
-// alpha numeric token
-void DigitStrippingSPAProcess1() {
-    const string TEST_INPUT = "Th1s 1s my 1st D1g1t T3st";
-    const string VALID_OUTPUT = "ThssstDgtTst";
+void DigitStrippingSPAProcessOne() {
+    const string TEST_INPUT = "0String 0with 0zero 0append 0to 0each 0word and no zero word.";
+    const string VALID_OUTPUT = "Stringwithzeroappendtoeachword";
     istringstream testInputStream(TEST_INPUT);
     ostringstream testOutputStream;
     DigitStrippingSPA testSPA(testInputStream, testOutputStream);
     testSPA.process();
-    // Check if expected output is present
     if (testOutputStream.str().compare(VALID_OUTPUT) == 0)
-        clog << "testDigitStrippingSPAProcess1 PASSED\n";
+        clog << "DigitStrippingSPAProcessOne test PASSED\n";
     else
-        clog << "testDigitStrippingSPAProcess1 FAILED : Expected output "
-        << VALID_OUTPUT << " instead saw " << testOutputStream.str() << "\n";
+        clog << "DigitStrippingSPAProcessOne test FAILED -> Expected output "
+        << VALID_OUTPUT << " but instead have" << testOutputStream.str() << "\n";
 }
-
-// non-numeric token
-void DigitStrippingSPAProcess2() {
-    const string TEST_INPUT = "This is MY second tEst!!$";
-    const string VALID_OUTPUT = "";
+void DigitStrippingSPAProcessTwo() {
+    const string TEST_INPUT = "0String1 0with2 0zero3 0append4 0to5 0each6 0word7 and no zero word.";
+    const string VALID_OUTPUT = "Stringwithzeroappendtoeachword";
     istringstream testInputStream(TEST_INPUT);
     ostringstream testOutputStream;
     DigitStrippingSPA testSPA(testInputStream, testOutputStream);
     testSPA.process();
-    // Check if expected output is present
     if (testOutputStream.str().compare(VALID_OUTPUT) == 0)
-        clog << "DigitStrippingSPAProcess2 test PASSED\n";
+        clog << "DigitStrippingSPAProcessTwo test PASSED\n";
     else
-        clog << "DigitStrippingSPAProcess2 test FAILED : Expected output "
-        << VALID_OUTPUT << " instead saw " << testOutputStream.str() << "\n";
+        clog << "DigitStrippingSPAProcessTwo test FAILED -> Expected output "
+        << VALID_OUTPUT << " but instead have " << testOutputStream.str() << "\n";
 }
 int main(void) {
-    cout << "\nTesting UppercasingSPA class:\n\n";
+    // running test cases
+    cout << "Testing UppercasingSPA class:\n";
     UppercasingSPAConstructor();
     UppercasingSPADestructor();
-    UppercasingSPAProcess1();
-    UppercasingSPAProcess2();
-
-    cout << "\n\nTesting DigitStrippingSPA class:\n\n";
+    UppercasingSPAProcessOne();
+    UppercasingSPAProcessTwo();
+    cout << "\n\nTesting DigitStrippingSPA class:\n";
     DigitStrippingSPAConstructor();
     DigitStrippingSPADestructor();
-    DigitStrippingSPAProcess1();
-    DigitStrippingSPAProcess2();
+    DigitStrippingSPAProcessOne();
+    DigitStrippingSPAProcessTwo();
 }
