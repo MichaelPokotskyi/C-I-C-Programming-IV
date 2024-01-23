@@ -156,7 +156,6 @@
 //        clog << "QueueDestructor test PASSED\n";
 //    }
 //    catch (...) {
-//        Queue<int> tempQ;
 //        clog << "QueueDestructor test FAILED\n";
 //    }
 //}
@@ -212,25 +211,30 @@
 //}
 //void QueuePush() {
 //    Queue<int> tempQ;
+//    const int INPUT = 1;
+//    const size_t ORIG_SIZE = 10;
+//    const size_t NEW_SIZE = 11; // +1 elem
 //    try {
-//        const int INPUT = 1;
-//        const size_t ORIG_SIZE = 10;
-//        const size_t NEW_SIZE = 11; // +1 elem
 //        for (int i = 0; i < ORIG_SIZE; ++i) {
 //            tempQ.push(i * INPUT);
 //        }
-//        clog << "QueuePush test PASSED\n";
-//        // add one more elem to check
-//        tempQ.push(INPUT);
+//        clog << "QueuePush initial size test PASSED\n";
+//    }
+//    catch (...) {
+//        clog << "QueuePush initial size test FAILED\n";
+//    }
+//    // add one more elem to check
+//    tempQ.push(INPUT);
+//    try {
 //        // checking
 //        if (tempQ.size() == NEW_SIZE)
-//            clog << "QueuePush test PASSED\n";
+//            clog << "QueuePush new size test PASSED\n";
 //        else
-//            clog << "QueuePush test FAILED -> Expected output "
+//            clog << "QueuePush new size test FAILED -> Expected output "
 //            << NEW_SIZE << " but instead have " << tempQ.size() << "\n";
 //    }
 //    catch (...) {
-//        clog << "QueuePush test FAILED\n";
+//        clog << "QueuePush new size test FAILED\n";
 //    }
 //}
 //void QueuePop() {
@@ -316,8 +320,8 @@
 //    tempQ.push(VALID_VALUE);
 //    tempQ.push(VALID_VALUE);
 //    const int VALID_SIZE = 2;
+//    const int TEST_VALUE = (int) tempQ.size(); // cast size_t to int 
 //    try {
-//        const int TEST_VALUE = tempQ.size();
 //        if (TEST_VALUE == VALID_SIZE)
 //            clog << "QueueSize test PASSED\n";
 //        else
@@ -329,7 +333,7 @@
 //    }
 //}
 //
-//int main(void) {
+//int main() {
 //    // running test cases
 //    QueueConstructor();       // test Queue<T>::Queue()
 //    QueueDestructor();        // test Queue<T>::~Queue()
