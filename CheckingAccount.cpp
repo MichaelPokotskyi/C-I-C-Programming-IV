@@ -12,12 +12,12 @@
 #include <vector>
 #include <list>
 
-    struct CheckingAccount::CheckingAccountImpl {
-        long accountNumber_;
-        double balance;
-        std::string firstName;
-        std::string lastName;
-        std::vector<double> deposits_;
-        std::vector<double> withdrawals_;
-        std::list<Check> checks_;
-    };
+struct CheckingAccount::CheckingAccountImpl {
+    long accountNumber_;
+    double balance;
+    std::string firstName;
+    std::string lastName;
+    std::vector<double> deposits_;
+    std::vector<double> withdrawals_;
+    std::list<Check> checks_;
+};

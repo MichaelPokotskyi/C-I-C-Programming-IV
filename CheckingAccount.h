@@ -1,4 +1,3 @@
-
 // Michael Pokotskyi U09662201
 // pokotskyi.m@gmail.com
 // C I C++ Programming IV CSE-40478
@@ -8,16 +7,15 @@
 // Minimizing Compile-time Dependencies
 // CheckingAccount.h
 
-// include guard
+// Include guard
 #ifndef CHECKINGACCOUNT_H
 #define CHECKINGACCOUNT_H
 
-// Only include the necessary header for string usage
+// Only necessary headers for string and ostream use
 #include <string>
-// #include <iosfwd> // M
+#include <iosfwd>
 
-// Forward declarations for classes used in the class definition
-
+// FWD declarations for classes
 class AccountExceptions;
 class BankAccount;
 class Check;
@@ -26,12 +24,13 @@ class CheckingAccount : public BankAccount {
 public:
     CheckingAccount(long accountNumber,
                     double initialBalance, 
-                    const std::string& firstName, 
+                    const std::string& firstName,
                     const std::string& lastName);
+    ~CheckingAccount();
     double getBalance() const;
-    void depositCheck(const Check& check);
-    void depositCash(double amount);
-    void withdrawCash(double amount);
+    void depositCheck(const Check&);
+    void depositCash(double);
+    void withdrawCash(double);
     virtual std::ostream& print(std::ostream&) const;
 
 protected:
