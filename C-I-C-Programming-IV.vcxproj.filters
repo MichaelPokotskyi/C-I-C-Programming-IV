@@ -24,5 +24,11 @@
     <ClCompile Include="HW3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CheckingAccount.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckingAccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
