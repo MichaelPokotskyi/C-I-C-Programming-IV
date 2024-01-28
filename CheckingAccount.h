@@ -8,16 +8,17 @@
 // CheckingAccount.h
 
 // Include guard
-#ifndef CHECKINGACCOUNT_H
+#ifndef CHECKINGACCOUNT_H 
 #define CHECKINGACCOUNT_H
 
-// Only necessary headers for string and ostream use
+// Only necessary headers for string and FWD ostream use
 #include <string>
 #include <iosfwd>
+// BankAccount are base class for CheckingAccount
+#include "BankAccount.h";
 
-// FWD declarations for classes
+// FWD declarations for user classes
 class AccountExceptions;
-class BankAccount;
 class Check;
 
 class CheckingAccount : public BankAccount {
