@@ -60,7 +60,12 @@ namespace Project1 {
             std::string magnitude = num.substr(1);
             if (is_valid_number(magnitude)) {
                 value = magnitude;
-                sign = num[0];
+                if (value == "0") {
+                    sign = '+';
+                }
+                else {
+                    sign = num[0];
+                }
             }
             else {
                 throw std::invalid_argument("Expected an integer, got \'" + num + "\'");
