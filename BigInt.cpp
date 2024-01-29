@@ -1,3 +1,10 @@
+// Michael Pokotskyi U09662201
+// pokotskyi.m@gmail.com
+// C I C++ Programming IV CSE-40478
+// Raymond Mitchell IV
+// BigInt.cpp
+// Win10, Visual C++ 2022, ISO C17
+// Class implementation
 
 #include "BigInt.h"
 #include <iostream>
@@ -5,12 +12,13 @@
 #include <string>
 
 namespace Project1 {
-
+    // ----------------------------------------------
+    //              HELPER FUNCTIONS
+    // ----------------------------------------------
     bool is_valid_number(const std::string& num) {
         for (char digit : num)
             if (digit < '0' or digit > '9')
                 return false;
-
         return true;
     }
 
@@ -19,12 +27,15 @@ namespace Project1 {
         for (i = 0; i < num.size(); i++)
             if (num[i] != '0')
                 break;
-
         if (i == num.size())
             num = "0";
         else
             num = num.substr(i);
     }
+
+    // ----------------------------------------------
+    //                 CONSTRUCTORS
+    // ----------------------------------------------
 
     BigInt::BigInt() {
         value = "0";

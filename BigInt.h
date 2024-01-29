@@ -1,3 +1,11 @@
+// Michael Pokotskyi U09662201
+// pokotskyi.m@gmail.com
+// C I C++ Programming IV CSE-40478
+// Raymond Mitchell IV
+// BigInt.h
+// Win10, Visual C++ 2022, ISO C17
+// Class interface and data members
+
 #include <iostream>
 #include <string>
 #include <iosfwd>

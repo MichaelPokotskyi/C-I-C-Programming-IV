@@ -45,137 +45,137 @@ TEST(BigIntCopyConstructor_FromPositive)
    CHECK_EQUAL("1234", out.str());
 }
 
-//TEST(BigIntCopyConstructor_FromNegative)
-//{
-//   BigInt bi1("-1234");
-//   BigInt bi2(bi1);
-//   ostringstream out;
-//   out << bi2;
-//   CHECK_EQUAL("-1234", out.str());
-//}
-//
-////-----------------------------------------------------------------------------
-//// BigInt(long long)
-////-----------------------------------------------------------------------------
-//TEST(BigIntConstructor_FromLongLong_Negative)
-//{
-//   BigInt bi1(-1000000LL);
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-1000000", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromLongLong_Zero)
-//{
-//   BigInt bi1(0LL);
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromLongLong_Positive)
-//{
-//   BigInt bi1(1000000LL);
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1000000", out.str());
-//}
-//
-////-----------------------------------------------------------------------------
-//// BigInt(string)
-////-----------------------------------------------------------------------------
-//TEST(BigIntConstructor_FromString)
-//{
-//   BigInt bi1("1234567789012345678901234567890");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1234567789012345678901234567890", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_Positive)
-//{
-//   BigInt bi1("+1234567789012345678901234567890");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1234567789012345678901234567890", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_Negative)
-//{
-//   BigInt bi1("-1234567789012345678901234567890");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-1234567789012345678901234567890", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_Zero)
-//{
-//   BigInt bi1("0");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_NegativeZero)
-//{
-//   BigInt bi1("-0");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_PositiveZero)
-//{
-//   BigInt bi1("+0");
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntConstructor_FromString_Empty)
-//{
-//	CHECK_THROW(BigInt(""), invalid_argument);
-//}
-//
-//TEST(BitIntConstructor_FromString_MinusSignOnly)
-//{
-//	CHECK_THROW(BigInt("-"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_ZeroZero)
-//{
-//   CHECK_THROW(BigInt("00"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_TrailingGarbage)
-//{
-//	CHECK_THROW(BigInt("1234i"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_LeadingGarbage)
-//{
-//	CHECK_THROW(BigInt("i1234"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_InternalGarbage)
-//{
-//	CHECK_THROW(BigInt("12i34"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_LeadingWhitespace)
-//{
-//	CHECK_THROW(BigInt("   12345677890123456789012345678"), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_TrailingWhitespace)
-//{
-//	CHECK_THROW(BigInt("12345677890123456789012345678   "), invalid_argument);
-//}
-//
-//TEST(BigIntConstructor_FromString_InternalWhitespace)
-//{
-//	CHECK_THROW(BigInt("12345677890123 456789012345678"), invalid_argument);
-//}
+TEST(BigIntCopyConstructor_FromNegative)
+{
+   BigInt bi1("-1234");
+   BigInt bi2(bi1);
+   ostringstream out;
+   out << bi2;
+   CHECK_EQUAL("-1234", out.str());
+}
+
+//-----------------------------------------------------------------------------
+// BigInt(long long)
+//-----------------------------------------------------------------------------
+TEST(BigIntConstructor_FromLongLong_Negative)
+{
+   BigInt bi1(-1000000LL);
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-1000000", out.str());
+}
+
+TEST(BigIntConstructor_FromLongLong_Zero)
+{
+   BigInt bi1(0LL);
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntConstructor_FromLongLong_Positive)
+{
+   BigInt bi1(1000000LL);
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1000000", out.str());
+}
+
+//-----------------------------------------------------------------------------
+// BigInt(string)
+//-----------------------------------------------------------------------------
+TEST(BigIntConstructor_FromString)
+{
+   BigInt bi1("1234567789012345678901234567890");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1234567789012345678901234567890", out.str());
+}
+
+TEST(BigIntConstructor_FromString_Positive)
+{
+   BigInt bi1("+1234567789012345678901234567890");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1234567789012345678901234567890", out.str());
+}
+
+TEST(BigIntConstructor_FromString_Negative)
+{
+   BigInt bi1("-1234567789012345678901234567890");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-1234567789012345678901234567890", out.str());
+}
+
+TEST(BigIntConstructor_FromString_Zero)
+{
+   BigInt bi1("0");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntConstructor_FromString_NegativeZero)
+{
+   BigInt bi1("-0");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntConstructor_FromString_PositiveZero)
+{
+   BigInt bi1("+0");
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntConstructor_FromString_Empty)
+{
+	CHECK_THROW(BigInt(""), invalid_argument);
+}
+
+TEST(BitIntConstructor_FromString_MinusSignOnly)
+{
+	CHECK_THROW(BigInt("-"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_ZeroZero)
+{
+   CHECK_THROW(BigInt("00"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_TrailingGarbage)
+{
+	CHECK_THROW(BigInt("1234i"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_LeadingGarbage)
+{
+	CHECK_THROW(BigInt("i1234"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_InternalGarbage)
+{
+	CHECK_THROW(BigInt("12i34"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_LeadingWhitespace)
+{
+	CHECK_THROW(BigInt("   12345677890123456789012345678"), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_TrailingWhitespace)
+{
+	CHECK_THROW(BigInt("12345677890123456789012345678   "), invalid_argument);
+}
+
+TEST(BigIntConstructor_FromString_InternalWhitespace)
+{
+	CHECK_THROW(BigInt("12345677890123 456789012345678"), invalid_argument);
+}
 //
 ////-----------------------------------------------------------------------------
 //// operator=
