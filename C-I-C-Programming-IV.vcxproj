@@ -70,6 +70,22 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>D:\MY\MY from WD\USA Docs\Way to Prog\UC San Diego\4th\GIT\C-I-C-Programming-IV\UnitTest++\src;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -102,7 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -116,7 +132,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -127,11 +143,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BigInt.cpp" />
     <ClCompile Include="CheckingAccount.cpp" />
     <ClCompile Include="HW1.cpp" />
     <ClCompile Include="HW2.cpp" />
     <ClCompile Include="HW3.cpp" />
     <ClCompile Include="CheckingAccount.h" />
+    <ClCompile Include="mainPr1.cpp" />
+    <ClCompile Include="UnitTest++\src\AssertException.cpp" />
+    <ClCompile Include="UnitTest++\src\Checks.cpp" />
+    <ClCompile Include="UnitTest++\src\CurrentTest.cpp" />
+    <ClCompile Include="UnitTest++\src\DeferredTestReporter.cpp" />
+    <ClCompile Include="UnitTest++\src\DeferredTestResult.cpp" />
+    <ClCompile Include="UnitTest++\src\MemoryOutStream.cpp" />
+    <ClCompile Include="UnitTest++\src\ReportAssert.cpp" />
+    <ClCompile Include="UnitTest++\src\Test.cpp" />
+    <ClCompile Include="UnitTest++\src\TestDetails.cpp" />
+    <ClCompile Include="UnitTest++\src\TestList.cpp" />
+    <ClCompile Include="UnitTest++\src\TestReporter.cpp" />
+    <ClCompile Include="UnitTest++\src\TestReporterStdout.cpp" />
+    <ClCompile Include="UnitTest++\src\TestResults.cpp" />
+    <ClCompile Include="UnitTest++\src\TestRunner.cpp" />
+    <ClCompile Include="UnitTest++\src\TimeConstraint.cpp" />
+    <ClCompile Include="UnitTest++\src\Win32\TimeHelpers.cpp" />
+    <ClCompile Include="UnitTest++\src\XmlTestReporter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BigInt.h" />
+    <ClInclude Include="UnitTest++\src\Checks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
