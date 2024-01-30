@@ -272,4 +272,26 @@ namespace Project1 {
 
     //    return result;
     //}
+
+    // ----------------------------------------------
+    //                  ASSIGNMENT
+    // ----------------------------------------------
+    const BigInt& BigInt::operator=(const BigInt& num)
+    {
+        value = num.value;
+        sign = num.sign;
+        return *this;
+    }
+
+    //const BigInt& BigInt::operator+=(const BigInt& num)
+    //{
+    //    num = num + num;
+    //    return num;
+    //}
+
+    //const BigInt& BigInt::operator-=(const BigInt& num)
+    //{
+    //    num = num - num;
+    //    return num;
+    //}
 };

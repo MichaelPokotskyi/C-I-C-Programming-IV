@@ -176,40 +176,40 @@ TEST(BigIntConstructor_FromString_InternalWhitespace)
 {
 	CHECK_THROW(BigInt("12345677890123 456789012345678"), invalid_argument);
 }
-//
-////-----------------------------------------------------------------------------
-//// operator=
-////-----------------------------------------------------------------------------
-//TEST(BigIntCopyAssignment_FromZero)
-//{
-//   BigInt bi1("0");
-//   BigInt bi2;
-//   bi2 = bi1;
-//   ostringstream out;
-//   out << bi2;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntCopyAssignment_FromPositive)
-//{
-//   BigInt bi1("1234");
-//   BigInt bi2;
-//   bi2 = bi1;
-//   ostringstream out;
-//   out << bi2;
-//   CHECK_EQUAL("1234", out.str());
-//}
-//
-//TEST(BigIntCopyAssignment_FromNegative)
-//{
-//   BigInt bi1("-1234");
-//   BigInt bi2;
-//   bi2 = bi1;
-//   ostringstream out;
-//   out << bi2;
-//   CHECK_EQUAL("-1234", out.str());
-//}
-//
+
+//-----------------------------------------------------------------------------
+// operator=
+//-----------------------------------------------------------------------------
+TEST(BigIntCopyAssignment_FromZero)
+{
+   BigInt bi1("0");
+   BigInt bi2;
+   bi2 = bi1;
+   ostringstream out;
+   out << bi2;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntCopyAssignment_FromPositive)
+{
+   BigInt bi1("1234");
+   BigInt bi2;
+   bi2 = bi1;
+   ostringstream out;
+   out << bi2;
+   CHECK_EQUAL("1234", out.str());
+}
+
+TEST(BigIntCopyAssignment_FromNegative)
+{
+   BigInt bi1("-1234");
+   BigInt bi2;
+   bi2 = bi1;
+   ostringstream out;
+   out << bi2;
+   CHECK_EQUAL("-1234", out.str());
+}
+
 ////-----------------------------------------------------------------------------
 //// operator+=
 ////-----------------------------------------------------------------------------
