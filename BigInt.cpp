@@ -18,7 +18,7 @@ namespace Project1 {
     // ----------------------------------------------
     //              HELPER FUNCTIONS
     // ----------------------------------------------
-    bool is_valid_number(const std::string& num) {
+    bool is_valid_num(const std::string& num) {
         for (char digit : num)
             if (digit < '0' or digit > '9')
                 return false;
@@ -85,7 +85,7 @@ namespace Project1 {
     BigInt::BigInt(const std::string& num) {
         if (num[0] == '+' or num[0] == '-') {     // check for sign
             std::string magnitude = num.substr(1);
-            if (is_valid_number(magnitude)) {
+            if (is_valid_num(magnitude)) {
                 value = magnitude;
                 if (value == "0") {
                     sign = '+';
@@ -99,7 +99,7 @@ namespace Project1 {
             }
         }
         else {      // if no sign is specified
-            if (is_valid_number(num)) {
+            if (is_valid_num(num)) {
                 value = num;
                 sign = '+';    // positive by default
             }
