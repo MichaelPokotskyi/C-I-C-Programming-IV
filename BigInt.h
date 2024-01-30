@@ -21,7 +21,7 @@ namespace Project1 {
         friend bool operator<=(const BigInt&, const BigInt&);
         friend bool operator>(const BigInt&, const BigInt&);
         friend bool operator>=(const BigInt&, const BigInt&);
-        friend std::ostream& operator<<(std::ostream&, const BigInt&);
+        friend ostream& operator<<(ostream&, const BigInt&);
         friend istream& operator>>(istream&, BigInt&);
     public: 
         BigInt();

@@ -13,19 +13,20 @@
 #include <climits>
 #include <cmath>
 #include <tuple>
+using namespace std;
 
 namespace Project1 {
     // ----------------------------------------------
     //              HELPER FUNCTIONS
     // ----------------------------------------------
-    bool is_valid_num(const std::string& num) {
+    bool is_valid_num(const string& num) {
         for (char digit : num)
             if (digit < '0' or digit > '9')
                 return false;
         return true;
     }
 
-    void strip_leading_zeroes(std::string& num) {
+    void strip_leading_zeroes(string& num) {
         size_t i;
         for (i = 0; i < num.size(); i++)
             if (num[i] != '0')
@@ -36,13 +37,13 @@ namespace Project1 {
             num = num.substr(i);
     }
 
-    void add_leading_zeroes(std::string& num, size_t num_zeroes) {
-        num = std::string(num_zeroes, '0') + num;
+    void add_leading_zeroes(string& num, size_t num_zeroes) {
+        num = string(num_zeroes, '0') + num;
     }
 
-    std::tuple<std::string, std::string> get_larger_and_smaller(const std::string& num1,
-                                                                const std::string& num2) {
-        std::string larger, smaller;
+    tuple<string, string> get_larger_and_smaller(const string& num1,
+                                                 const string& num2) {
+        string larger, smaller;
         if (num1.size() > num2.size() or
            (num1.size() == num2.size() and 
             num1 > num2)) {
@@ -57,7 +58,7 @@ namespace Project1 {
         // pad the smaller number with zeroes
         add_leading_zeroes(smaller, larger.size() - smaller.size());
 
-        return std::make_tuple(larger, smaller);
+        return make_tuple(larger, smaller);
     }
 
     // ----------------------------------------------
@@ -75,16 +76,16 @@ namespace Project1 {
     }
 
     BigInt::BigInt(long long num) {
-        value = std::to_string(std::abs(num));
+        value = to_string(abs(num));
         if (num < 0)
             sign = '-';
         else
             sign = '+';
     }
 
-    BigInt::BigInt(const std::string& num) {
+    BigInt::BigInt(const string& num) {
         if (num[0] == '+' or num[0] == '-') {     // check for sign
-            std::string magnitude = num.substr(1);
+            string magnitude = num.substr(1);
             if (is_valid_num(magnitude)) {
                 value = magnitude;
                 if (value == "0") {
@@ -95,7 +96,7 @@ namespace Project1 {
                 }
             }
             else {
-                throw std::invalid_argument("Expected an integer, got \'" + num + "\'");
+                throw invalid_argument("Expected an integer, got \'" + num + "\'");
             }
         }
         else {      // if no sign is specified
@@ -104,7 +105,7 @@ namespace Project1 {
                 sign = '+';    // positive by default
             }
             else {
-                throw std::invalid_argument("Expected an integer, got \'" + num + "\'");
+                throw invalid_argument("Expected an integer, got \'" + num + "\'");
             }
         }
         strip_leading_zeroes(value);
@@ -114,7 +115,7 @@ namespace Project1 {
     //                  IO streams
     // ----------------------------------------------
 
-    std::ostream& operator << (std::ostream& cout, const BigInt& a) {
+    ostream& operator << (ostream& cout, const BigInt& a) {
         if (a.sign == '-') {
             cout << a.sign;
         }
@@ -122,8 +123,8 @@ namespace Project1 {
         return cout;
     }
 
-    std::istream& operator>>(std::istream& in, BigInt& num) {
-        std::string input;
+    istream& operator>>(istream& in, BigInt& num) {
+        string input;
         in >> input;
         num = BigInt(input);  // remove sign from value and set sign, if exists
         return in;
@@ -187,8 +188,8 @@ namespace Project1 {
     //    }
 
     //    // identify the numbers as `larger` and `smaller`
-    //    std::string larger, smaller;
-    //    std::tie(larger, smaller) = get_larger_and_smaller(num.value, num1.value);
+    //    string larger, smaller;
+    //    tie(larger, smaller) = get_larger_and_smaller(num.value, num1.value);
 
     //    BigInt result;      // the resultant sum
     //    result.value = "";  // the value is cleared as the digits will be appended
@@ -196,11 +197,11 @@ namespace Project1 {
     //    // add the two values
     //    for (long i = larger.size() - 1; i >= 0; i--) {
     //        sum = larger[i] - '0' + smaller[i] - '0' + carry;
-    //        result.value = std::to_string(sum % 10) + result.value;
+    //        result.value = to_string(sum % 10) + result.value;
     //        carry = sum / (short)10;
     //    }
     //    if (carry)
-    //        result.value = std::to_string(carry) + result.value;
+    //        result.value = to_string(carry) + result.value;
 
     //    // if the operands are negative, the result is negative
     //    if (num.sign == '-' and result.value != "0")
@@ -224,7 +225,7 @@ namespace Project1 {
 
     //    BigInt result;      // the resultant difference
     //    // identify the numbers as `larger` and `smaller`
-    //    std::string larger, smaller;
+    //    string larger, smaller;
     //    if (abs(*this) > abs(num)) {
     //        larger = this->value;
     //        smaller = num.value;
@@ -262,7 +263,7 @@ namespace Project1 {
     //            }
     //            difference += 10;   // add the borrow
     //        }
-    //        result.value = std::to_string(difference) + result.value;
+    //        result.value = to_string(difference) + result.value;
     //    }
     //    strip_leading_zeroes(result.value);
 
