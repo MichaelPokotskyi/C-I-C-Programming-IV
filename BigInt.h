@@ -13,16 +13,16 @@ using namespace std;
 
 namespace Project1 {
     class BigInt {
-        /*friend const BigInt operator+(const BigInt&, const BigInt&);
-        friend const BigInt operator-(const BigInt&, const BigInt&);
+        //friend const BigInt operator+(const BigInt&, const BigInt&);
+        //friend const BigInt operator-(const BigInt&, const BigInt&);
         friend bool operator==(const BigInt&, const BigInt&);
         friend bool operator!=(const BigInt&, const BigInt&);
         friend bool operator<(const BigInt&, const BigInt&);
         friend bool operator<=(const BigInt&, const BigInt&);
         friend bool operator>(const BigInt&, const BigInt&);
-        friend bool operator>=(const BigInt&, const BigInt&);*/
+        friend bool operator>=(const BigInt&, const BigInt&);
         friend std::ostream& operator<<(std::ostream&, const BigInt&);
-        // friend istream& operator>>(istream&, BigInt&);
+        friend istream& operator>>(istream&, BigInt&);
     public: 
         BigInt();
         BigInt(const BigInt&);

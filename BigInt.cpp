@@ -83,6 +83,10 @@ namespace Project1 {
         strip_leading_zeroes(value);
     }
 
+    // ----------------------------------------------
+    //                  IO streams
+    // ----------------------------------------------
+
     std::ostream& operator << (std::ostream& cout, const BigInt& a) {
         if (a.sign == '-') {
             cout << a.sign;
@@ -91,5 +95,50 @@ namespace Project1 {
         return cout;
     }
 
+    std::istream& operator>>(std::istream& in, BigInt& num) {
+        std::string input;
+        in >> input;
+        num = BigInt(input);  // remove sign from value and set sign, if exists
+        return in;
+    }
 
+    // ----------------------------------------------
+    //                 RELATIONAL
+    // ----------------------------------------------
+
+    bool operator==(const BigInt& num, const BigInt& num1) {
+        return (num.sign == num1.sign) and (num.value == num1.value);
+    }
+
+    bool operator!=(const BigInt& num, const BigInt& num1) {
+        return !(num == num1);
+    }
+
+    bool operator<(const BigInt& num, const BigInt& num1) {
+        if (num.sign == num1.sign) {
+            if (num.sign == '+') {
+                if (num.value.length() == num1.value.length())
+                    return num.value < num1.value;
+                else
+                    return num.value.length() < num1.value.length();
+            }
+            else
+                return num.value > num1.value;
+        }
+        else
+            return num.sign == '-';
+
+    }
+
+    bool operator<=(const BigInt& num, const BigInt& num1) {
+        return (num < num1) or (num == num1);
+    }
+
+    bool operator>(const BigInt& num, const BigInt& num1) {
+        return !((num < num1) or (num == num1));
+    }
+
+    bool operator>=(const BigInt& num, const BigInt& num1) {
+        return !(num < num1);
+    }
 };

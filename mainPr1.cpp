@@ -611,333 +611,333 @@ TEST(BigIntConstructor_FromString_InternalWhitespace)
 //	out << bi3;
 //	CHECK_EQUAL("-111111111111111111111111111111111111111111111111111111111111", out.str());
 //}
-//
-////-----------------------------------------------------------------------------
-//// operator==
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorEqual_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(bi1 == bi2);
-//}
-//
-//TEST(BigIntOperatorEqual_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(!(bi1 == bi2));
-//}
-//
-//TEST(BigIntOperatorEqual_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 == bi2);
-//}
-//
-//TEST(BigIntOperatorEqual_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(!(bi1 == bi2));
-//}
-//
-//TEST(BigIntOperatorEqual_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 == bi2));
-//}
-//
-//TEST(BigIntOperatorEqual_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 == bi2));
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator!=
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorNotEqual_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 != bi2));
-//}
-//
-//TEST(BigIntOperatorNotEqual_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(bi1 != bi2);
-//}
-//
-//TEST(BigIntOperatorNotEqual_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 != bi2));
-//}
-//
-//TEST(BigIntOperatorNotEqual_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(bi1 != bi2);
-//}
-//
-//TEST(BigIntOperatorNotEqual_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 != bi2);
-//}
-//
-//TEST(BigIntOperatorNotEqual_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(bi1 != bi2);
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator<
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorLessThan_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 < bi2));
-//}
-//
-//TEST(BigIntOperatorLessThan_BothPositive_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("67890");
-//   CHECK(bi1 < bi2);
-//}
-//
-//TEST(BigIntOperatorLessThan_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(bi1 < bi2);
-//}
-//
-//TEST(BigIntOperatorLessThan_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 < bi2));
-//}
-//
-//TEST(BigIntOperatorLessThan_BothNegative_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("-67890");
-//   BigInt bi2("-12345");
-//   CHECK(bi1 < bi2);
-//}
-//
-//TEST(BigIntOperatorLessThan_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(!(bi1 < bi2));
-//}
-//
-//TEST(BigIntOperatorLessThan_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 < bi2));
-//}
-//
-//TEST(BigIntOperatorLessThan_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(bi1 < bi2);
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator<=
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorLessThanEqual_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(bi1 <= bi2);
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_BothPositive_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("67890");
-//   CHECK(bi1 <= bi2);
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(bi1 <= bi2);
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 <= bi2);
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_BothNegative_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("-67890");
-//   BigInt bi2("-12345");
-//   CHECK(bi1 <= bi2);
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(!(bi1 <= bi2));
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 <= bi2));
-//}
-//
-//TEST(BigIntOperatorLessThanEqual_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(bi1 <= bi2);
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator>
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorGreaterThan_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThan_BothPositive_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("67890");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThan_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThan_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThan_BothNegative_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("-67890");
-//   BigInt bi2("-12345");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThan_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(bi1 > bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThan_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 > bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThan_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 > bi2));
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator>=
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorGreaterThanEqual_BothPositive_Equal)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("456");
-//   CHECK(bi1 >= bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_BothPositive_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("67890");
-//   CHECK(!(bi1 >= bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_BothPositive_LeftShorter)
-//{
-//   BigInt bi1("12345");
-//   BigInt bi2("6789012345");
-//   CHECK(!(bi1 >= bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_BothNegative_Equal)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 >= bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_BothNegative_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("-67890");
-//   BigInt bi2("-12345");
-//   CHECK(!(bi1 >= bi2));
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_BothNegative_LeftShorter)
-//{
-//   BigInt bi1("-12345");
-//   BigInt bi2("-6789012345");
-//   CHECK(bi1 >= bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_LeftPositiveRightNegative_SameLength)
-//{
-//   BigInt bi1("456");
-//   BigInt bi2("-456");
-//   CHECK(bi1 >= bi2);
-//}
-//
-//TEST(BigIntOperatorGreaterThanEqual_LeftNegativeRightPositive_SameLength)
-//{
-//   BigInt bi1("-456");
-//   BigInt bi2("456");
-//   CHECK(!(bi1 >= bi2));
-//}
-//
+
+//-----------------------------------------------------------------------------
+// operator==
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorEqual_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(bi1 == bi2);
+}
+
+TEST(BigIntOperatorEqual_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(!(bi1 == bi2));
+}
+
+TEST(BigIntOperatorEqual_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(bi1 == bi2);
+}
+
+TEST(BigIntOperatorEqual_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(!(bi1 == bi2));
+}
+
+TEST(BigIntOperatorEqual_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 == bi2));
+}
+
+TEST(BigIntOperatorEqual_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(!(bi1 == bi2));
+}
+
+//-----------------------------------------------------------------------------
+// operator!=
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorNotEqual_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(!(bi1 != bi2));
+}
+
+TEST(BigIntOperatorNotEqual_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(bi1 != bi2);
+}
+
+TEST(BigIntOperatorNotEqual_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 != bi2));
+}
+
+TEST(BigIntOperatorNotEqual_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(bi1 != bi2);
+}
+
+TEST(BigIntOperatorNotEqual_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(bi1 != bi2);
+}
+
+TEST(BigIntOperatorNotEqual_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(bi1 != bi2);
+}
+
+//-----------------------------------------------------------------------------
+// operator<
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorLessThan_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(!(bi1 < bi2));
+}
+
+TEST(BigIntOperatorLessThan_BothPositive_SameLength_LeftSmaller)
+{
+   BigInt bi1("12345");
+   BigInt bi2("67890");
+   CHECK(bi1 < bi2);
+}
+
+TEST(BigIntOperatorLessThan_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(bi1 < bi2);
+}
+
+TEST(BigIntOperatorLessThan_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 < bi2));
+}
+
+TEST(BigIntOperatorLessThan_BothNegative_SameLength_LeftSmaller)
+{
+   BigInt bi1("-67890");
+   BigInt bi2("-12345");
+   CHECK(bi1 < bi2);
+}
+
+TEST(BigIntOperatorLessThan_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(!(bi1 < bi2));
+}
+
+TEST(BigIntOperatorLessThan_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 < bi2));
+}
+
+TEST(BigIntOperatorLessThan_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(bi1 < bi2);
+}
+
+//-----------------------------------------------------------------------------
+// operator<=
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorLessThanEqual_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(bi1 <= bi2);
+}
+
+TEST(BigIntOperatorLessThanEqual_BothPositive_SameLength_LeftSmaller)
+{
+   BigInt bi1("12345");
+   BigInt bi2("67890");
+   CHECK(bi1 <= bi2);
+}
+
+TEST(BigIntOperatorLessThanEqual_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(bi1 <= bi2);
+}
+
+TEST(BigIntOperatorLessThanEqual_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(bi1 <= bi2);
+}
+
+TEST(BigIntOperatorLessThanEqual_BothNegative_SameLength_LeftSmaller)
+{
+   BigInt bi1("-67890");
+   BigInt bi2("-12345");
+   CHECK(bi1 <= bi2);
+}
+
+TEST(BigIntOperatorLessThanEqual_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(!(bi1 <= bi2));
+}
+
+TEST(BigIntOperatorLessThanEqual_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 <= bi2));
+}
+
+TEST(BigIntOperatorLessThanEqual_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(bi1 <= bi2);
+}
+
+//-----------------------------------------------------------------------------
+// operator>
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorGreaterThan_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(!(bi1 > bi2));
+}
+
+TEST(BigIntOperatorGreaterThan_BothPositive_SameLength_LeftSmaller)
+{
+   BigInt bi1("12345");
+   BigInt bi2("67890");
+   CHECK(!(bi1 > bi2));
+}
+
+TEST(BigIntOperatorGreaterThan_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(!(bi1 > bi2));
+}
+
+TEST(BigIntOperatorGreaterThan_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(!(bi1 > bi2));
+}
+
+TEST(BigIntOperatorGreaterThan_BothNegative_SameLength_LeftSmaller)
+{
+   BigInt bi1("-67890");
+   BigInt bi2("-12345");
+   CHECK(!(bi1 > bi2));
+}
+
+TEST(BigIntOperatorGreaterThan_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(bi1 > bi2);
+}
+
+TEST(BigIntOperatorGreaterThan_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(bi1 > bi2);
+}
+
+TEST(BigIntOperatorGreaterThan_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(!(bi1 > bi2));
+}
+
+//-----------------------------------------------------------------------------
+// operator>=
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorGreaterThanEqual_BothPositive_Equal)
+{
+   BigInt bi1("456");
+   BigInt bi2("456");
+   CHECK(bi1 >= bi2);
+}
+
+TEST(BigIntOperatorGreaterThanEqual_BothPositive_SameLength_LeftSmaller)
+{
+   BigInt bi1("12345");
+   BigInt bi2("67890");
+   CHECK(!(bi1 >= bi2));
+}
+
+TEST(BigIntOperatorGreaterThanEqual_BothPositive_LeftShorter)
+{
+   BigInt bi1("12345");
+   BigInt bi2("6789012345");
+   CHECK(!(bi1 >= bi2));
+}
+
+TEST(BigIntOperatorGreaterThanEqual_BothNegative_Equal)
+{
+   BigInt bi1("-456");
+   BigInt bi2("-456");
+   CHECK(bi1 >= bi2);
+}
+
+TEST(BigIntOperatorGreaterThanEqual_BothNegative_SameLength_LeftSmaller)
+{
+   BigInt bi1("-67890");
+   BigInt bi2("-12345");
+   CHECK(!(bi1 >= bi2));
+}
+
+TEST(BigIntOperatorGreaterThanEqual_BothNegative_LeftShorter)
+{
+   BigInt bi1("-12345");
+   BigInt bi2("-6789012345");
+   CHECK(bi1 >= bi2);
+}
+
+TEST(BigIntOperatorGreaterThanEqual_LeftPositiveRightNegative_SameLength)
+{
+   BigInt bi1("456");
+   BigInt bi2("-456");
+   CHECK(bi1 >= bi2);
+}
+
+TEST(BigIntOperatorGreaterThanEqual_LeftNegativeRightPositive_SameLength)
+{
+   BigInt bi1("-456");
+   BigInt bi2("456");
+   CHECK(!(bi1 >= bi2));
+}
+
 ////-----------------------------------------------------------------------------
 //// operator<<
 ////-----------------------------------------------------------------------------
