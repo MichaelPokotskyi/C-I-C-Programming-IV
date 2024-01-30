@@ -33,8 +33,8 @@ namespace Project1 {
         // const BigInt& operator+=(const BigInt&);
         // const BigInt& operator-=(const BigInt&);
     private: 
+        // You decide what goes here... 
         std::string value;
         char sign;
-        // You decide what goes here... 
     };
 }

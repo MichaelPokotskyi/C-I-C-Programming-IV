@@ -41,7 +41,7 @@ namespace Project1 {
         num = string(num_zeroes, '0') + num;
     }
 
-    tuple<string, string> get_larger_and_smaller(const string& num1,
+    const tuple<string, string> get_larger_and_smaller(const string& num1,
                                                  const string& num2) {
         string larger, smaller;
         if (num1.size() > num2.size() or
