@@ -63,7 +63,6 @@ namespace Project1 {
 
     BigInt BigInt::operator-() const {
         BigInt temp;
-
         temp.value = value;
         if (value != "0") {
             if (sign == '+')
@@ -71,7 +70,6 @@ namespace Project1 {
             else
                 temp.sign = '+';
         }
-
         return temp;
     }
 
@@ -97,33 +95,36 @@ namespace Project1 {
             sign = '+';
     }
 
-    BigInt::BigInt(const string& num) {
-        if (num[0] == '+' or num[0] == '-') {     // check for sign
-            string magnitude = num.substr(1);
-            if (is_valid_num(magnitude)) {
-                value = magnitude;
-                if (value == "0") {
-                    sign = '+';
-                }
-                else {
-                    sign = num[0];
-                }
-            }
-            else {
-                throw invalid_argument("Expected an integer, got \'" + num + "\'");
-            }
-        }
-        else {      // if no sign is specified
-            if (is_valid_num(num)) {
-                value = num;
-                sign = '+';    // positive by default
-            }
-            else {
-                throw invalid_argument("Expected an integer, got \'" + num + "\'");
-            }
-        }
-        strip_leading_zeroes(value);
-    }
+ BigInt::BigInt(const string& num) {
+     if (num == "" or num == "-" or num == "00") {
+         throw invalid_argument("Expected an integer, got \'" + num + "\'");
+     }
+     if (num[0] == '+' or num[0] == '-') {     // check for sign
+         string magnitude = num.substr(1);
+         if (is_valid_num(magnitude)) {
+             value = magnitude;
+             if (num[0] == '-' and magnitude == "0") {
+                 sign = '+'; 
+             }
+             else {
+                 sign = num[0];
+             }
+         }
+         else {
+             throw invalid_argument("Expected an integer, got \'" + num + "\'");
+         }
+     }
+     else {      // if no sign is specified
+         if (is_valid_num(num)) {
+             value = num;
+             sign = '+';    // positive by default
+         }
+         else {
+             throw invalid_argument("Expected an integer, got \'" + num + "\'");
+         }
+     }
+     strip_leading_zeroes(value);
+}
 
     // ----------------------------------------------
     //                  IO streams
