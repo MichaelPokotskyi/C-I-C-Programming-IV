@@ -7,11 +7,6 @@
 // Class implementation
 
 #include "BigInt.h"
-#include <iostream>
-#include <iosfwd>
-#include <string>
-#include <climits>
-#include <cmath>
 #include <tuple>
 using namespace std;
 
@@ -63,7 +58,7 @@ namespace Project1 {
     }
 
     BigInt abs_(const BigInt& num) {
-        return num < 0 ? num : num; // -num : num;
+        return num < 0 ? -num : num;
     }
 
     BigInt BigInt::operator-() const {
@@ -201,7 +196,7 @@ namespace Project1 {
         else if (num.sign == '-' and num1.sign == '+') {
             BigInt lhs = num;
             lhs.sign = '+';
-            return -(lhs - num); // -(lhs - num);
+            return -(lhs - num1); // -(lhs - num);
         }
         // identify the numbers as `larger` and `smaller`
         std::string larger, smaller;
@@ -225,12 +220,6 @@ namespace Project1 {
         return result;
     }
 
-    const BigInt& BigInt::operator+=(const BigInt& num) {
-        *this = *this + num;
-        return *this;
-    }
-
-
     const BigInt operator-(const BigInt& num, const BigInt& num1) {
         // if the operands are of opposite signs, perform addition
         if (num.sign == '+' and num1.sign == '-') {
@@ -241,7 +230,7 @@ namespace Project1 {
         else if (num.sign == '-' and num1.sign == '+') {
             BigInt lhs = num;
             lhs.sign = '+';
-            return -(lhs + num1); // -(lhs + num);
+            return -(lhs + num1);
         }
 
         BigInt result;      // the resultant difference
@@ -295,11 +284,6 @@ namespace Project1 {
         return result;
     }
 
-    const BigInt& BigInt::operator-=(const BigInt& num) {
-        *this = *this - num;
-        return *this;
-    }
-
     // ----------------------------------------------
     //                  ASSIGNMENT
     // ----------------------------------------------
@@ -310,4 +294,15 @@ namespace Project1 {
         sign = num.sign;
         return *this;
     }
+
+    const BigInt& BigInt::operator-=(const BigInt& num) {
+        *this = *this - num;
+        return *this;
+    }
+
+    const BigInt& BigInt::operator+=(const BigInt& num) {
+        *this = *this + num;
+        return *this;
+    }
+
 };
