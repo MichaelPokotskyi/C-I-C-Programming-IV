@@ -13,8 +13,8 @@ using namespace std;
 
 namespace Project1 {
     class BigInt {
-        //friend const BigInt operator+(const BigInt&, const BigInt&);
-        //friend const BigInt operator-(const BigInt&, const BigInt&);
+        friend const BigInt operator+(const BigInt&, const BigInt&);
+        friend const BigInt operator-(const BigInt&, const BigInt&);
         friend bool operator==(const BigInt&, const BigInt&);
         friend bool operator!=(const BigInt&, const BigInt&);
         friend bool operator<(const BigInt&, const BigInt&);
@@ -30,11 +30,12 @@ namespace Project1 {
         BigInt(long long); 
         BigInt(const string&);
         const BigInt& operator=(const BigInt&);
-        // const BigInt& operator+=(const BigInt&);
-        // const BigInt& operator-=(const BigInt&);
+        BigInt operator-() const;
+        const BigInt& operator+=(const BigInt&);
+        const BigInt& operator-=(const BigInt&);
     private: 
         // You decide what goes here... 
-        std::string value;
+        string value;
         char sign;
     };
 }

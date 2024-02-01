@@ -210,407 +210,407 @@ TEST(BigIntCopyAssignment_FromNegative)
    CHECK_EQUAL("-1234", out.str());
 }
 
-////-----------------------------------------------------------------------------
-//// operator+=
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorAddAssign_BothPositive_Equal)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("123");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("246", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftPositiveRightZero)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("0");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("123", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftZeroRightPositive)
-//{
-//   BigInt bi1("0");
-//   BigInt bi2("123");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("123", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothPositive_SameLength)
-//{
-//   BigInt bi1("901");
-//   BigInt bi2("899");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1800", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothPositive_LeftLonger)
-//{
-//   BigInt bi1("1070102");
-//   BigInt bi2("899923");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1970025", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothPositive_RightLonger)
-//{
-//   BigInt bi1("899923");
-//   BigInt bi2("1070102");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("1970025", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothNegative_SameLength)
-//{
-//   BigInt bi1("-899");
-//   BigInt bi2("-901");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-1800", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothNegative_LeftLonger)
-//{
-//   BigInt bi1("-1070102");
-//   BigInt bi2("-899923");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-1970025", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_BothNegative_RightLonger)
-//{
-//   BigInt bi1("-899923");
-//   BigInt bi2("-1070102");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-1970025", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftNegativeRightPositive_LeftShorter)
-//{
-//   BigInt bi1("-901");
-//   BigInt bi2("28260972");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("28260071", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftNegativeRightPositive_RightShorter)
-//{
-//   BigInt bi1("-28260972");
-//   BigInt bi2("901");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-28260071", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftPositiveRightNegative_LeftShorter)
-//{
-//   BigInt bi1("901");
-//   BigInt bi2("-28260972");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-28260071", out.str());
-//}
-//
-//TEST(BigIntOperatorAddAssign_LeftPositiveRightNegative_RightShorter)
-//{
-//   BigInt bi1("28260972");
-//   BigInt bi2("-901");
-//   bi1 += bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("28260071", out.str());
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator-=
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorSubtractAssign_BothPositive_Equal)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("123");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("0", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftPositiveRightZero)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("0");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("123", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftZeroRightPositive)
-//{
-//   BigInt bi1("0");
-//   BigInt bi2("123");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-123", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothPositive_SameLength_LeftLarger)
-//{
-//   BigInt bi1("901");
-//   BigInt bi2("899");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("2", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothPositive_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("899");
-//   BigInt bi2("901");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-2", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothPositive_LeftLonger)
-//{
-//   BigInt bi1("1070102");
-//   BigInt bi2("899923");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("170179", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothPositive_RightLonger)
-//{
-//   BigInt bi1("899923");
-//   BigInt bi2("1070102");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-170179", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothNegative_SameLength_LeftLarger)
-//{
-//   BigInt bi1("-899");
-//   BigInt bi2("-901");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("2", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothNegative_SameLength_LeftSmaller)
-//{
-//   BigInt bi1("-901");
-//   BigInt bi2("-899");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-2", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothNegative_LeftLonger)
-//{
-//   BigInt bi1("-1070102");
-//   BigInt bi2("-899923");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-170179", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_BothNegative_RightLonger)
-//{
-//   BigInt bi1("-899923");
-//   BigInt bi2("-1070102");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("170179", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftNegativeRightPositive_LeftShorter)
-//{
-//   BigInt bi1("-901");
-//   BigInt bi2("28260972");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-28261873", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftNegativeRightPositive_RightShorter)
-//{
-//   BigInt bi1("-28260972");
-//   BigInt bi2("901");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("-28261873", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftPositiveRightNegative_LeftShorter)
-//{
-//   BigInt bi1("901");
-//   BigInt bi2("-28260972");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("28261873", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtractAssign_LeftPositiveRightNegative_RightShorter)
-//{
-//   BigInt bi1("28260972");
-//   BigInt bi2("-901");
-//   bi1 -= bi2;
-//   ostringstream out;
-//   out << bi1;
-//   CHECK_EQUAL("28261873", out.str());
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator+
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorAdd)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("456");
-//   BigInt bi3(bi1 + bi2);
-//   ostringstream out;
-//   out << bi3;
-//   CHECK_EQUAL("579", out.str());
-//}
-//
-//TEST(BigIntOperatorAdd_CarryMostSignificantDigit)
-//{
-//	BigInt bi1("999");
-//	BigInt bi2("888");
-//	BigInt bi3(bi1 + bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("1887", out.str());
-//}
-//
-//TEST(BigIntOperatorAdd_FirstNumberNegative)
-//{
-//	BigInt bi1("-123");
-//	BigInt bi2("456");
-//	BigInt bi3(bi1 + bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("333", out.str());
-//}
-//
-//TEST(BigIntOperatorAdd_SecondNumberNegative)
-//{
-//	BigInt bi1("123");
-//	BigInt bi2("-456");
-//	BigInt bi3(bi1 + bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("-333", out.str());
-//}
-//
-//TEST(BigIntOperatorAdd_BothNumbersNegative)
-//{
-//	BigInt bi1("-123");
-//	BigInt bi2("-456");
-//	BigInt bi3(bi1 + bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("-579", out.str());
-//}
-//
-//TEST(BigIntOperatorAdd_LargeNumbers)
-//{
-//	BigInt bi1("111111111111111111111111111111111111111111111111111111111111");
-//	BigInt bi2("222222222222222222222222222222222222222222222222222222222222");
-//	BigInt bi3(bi1 + bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("333333333333333333333333333333333333333333333333333333333333", out.str());
-//}
-//
-////-----------------------------------------------------------------------------
-//// operator-
-////-----------------------------------------------------------------------------
-//TEST(BigIntOperatorSubtract)
-//{
-//   BigInt bi1("123");
-//   BigInt bi2("456");
-//   BigInt bi3(bi1 - bi2);
-//   ostringstream out;
-//   out << bi3;
-//   CHECK_EQUAL("-333", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtract_FirstNumberNegative)
-//{
-//	BigInt bi1("-123");
-//	BigInt bi2("456");
-//	BigInt bi3(bi1 - bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("-579", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtract_SecondNumberNegative)
-//{
-//	BigInt bi1("123");
-//	BigInt bi2("-456");
-//	BigInt bi3(bi1 - bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("579", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtract_BothNumbersNegative)
-//{
-//	BigInt bi1("-123");
-//	BigInt bi2("-456");
-//	BigInt bi3(bi1 - bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("333", out.str());
-//}
-//
-//TEST(BigIntOperatorSubtract_LargeNumbers)
-//{
-//	BigInt bi1("111111111111111111111111111111111111111111111111111111111111");
-//	BigInt bi2("222222222222222222222222222222222222222222222222222222222222");
-//	BigInt bi3(bi1 - bi2);
-//	ostringstream out;
-//	out << bi3;
-//	CHECK_EQUAL("-111111111111111111111111111111111111111111111111111111111111", out.str());
-//}
+//-----------------------------------------------------------------------------
+// operator+=
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorAddAssign_BothPositive_Equal)
+{
+   BigInt bi1("123");
+   BigInt bi2("123");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("246", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftPositiveRightZero)
+{
+   BigInt bi1("123");
+   BigInt bi2("0");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("123", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftZeroRightPositive)
+{
+   BigInt bi1("0");
+   BigInt bi2("123");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("123", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothPositive_SameLength)
+{
+   BigInt bi1("901");
+   BigInt bi2("899");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1800", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothPositive_LeftLonger)
+{
+   BigInt bi1("1070102");
+   BigInt bi2("899923");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1970025", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothPositive_RightLonger)
+{
+   BigInt bi1("899923");
+   BigInt bi2("1070102");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("1970025", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothNegative_SameLength)
+{
+   BigInt bi1("-899");
+   BigInt bi2("-901");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-1800", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothNegative_LeftLonger)
+{
+   BigInt bi1("-1070102");
+   BigInt bi2("-899923");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-1970025", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_BothNegative_RightLonger)
+{
+   BigInt bi1("-899923");
+   BigInt bi2("-1070102");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-1970025", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftNegativeRightPositive_LeftShorter)
+{
+   BigInt bi1("-901");
+   BigInt bi2("28260972");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("28260071", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftNegativeRightPositive_RightShorter)
+{
+   BigInt bi1("-28260972");
+   BigInt bi2("901");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-28260071", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftPositiveRightNegative_LeftShorter)
+{
+   BigInt bi1("901");
+   BigInt bi2("-28260972");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-28260071", out.str());
+}
+
+TEST(BigIntOperatorAddAssign_LeftPositiveRightNegative_RightShorter)
+{
+   BigInt bi1("28260972");
+   BigInt bi2("-901");
+   bi1 += bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("28260071", out.str());
+}
+
+//-----------------------------------------------------------------------------
+// operator-=
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorSubtractAssign_BothPositive_Equal)
+{
+   BigInt bi1("123");
+   BigInt bi2("123");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("0", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftPositiveRightZero)
+{
+   BigInt bi1("123");
+   BigInt bi2("0");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("123", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftZeroRightPositive)
+{
+   BigInt bi1("0");
+   BigInt bi2("123");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-123", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothPositive_SameLength_LeftLarger)
+{
+   BigInt bi1("901");
+   BigInt bi2("899");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("2", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothPositive_SameLength_LeftSmaller)
+{
+   BigInt bi1("899");
+   BigInt bi2("901");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-2", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothPositive_LeftLonger)
+{
+   BigInt bi1("1070102");
+   BigInt bi2("899923");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("170179", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothPositive_RightLonger)
+{
+   BigInt bi1("899923");
+   BigInt bi2("1070102");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-170179", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothNegative_SameLength_LeftLarger)
+{
+   BigInt bi1("-899");
+   BigInt bi2("-901");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("2", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothNegative_SameLength_LeftSmaller)
+{
+   BigInt bi1("-901");
+   BigInt bi2("-899");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-2", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothNegative_LeftLonger)
+{
+   BigInt bi1("-1070102");
+   BigInt bi2("-899923");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-170179", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_BothNegative_RightLonger)
+{
+   BigInt bi1("-899923");
+   BigInt bi2("-1070102");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("170179", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftNegativeRightPositive_LeftShorter)
+{
+   BigInt bi1("-901");
+   BigInt bi2("28260972");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-28261873", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftNegativeRightPositive_RightShorter)
+{
+   BigInt bi1("-28260972");
+   BigInt bi2("901");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("-28261873", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftPositiveRightNegative_LeftShorter)
+{
+   BigInt bi1("901");
+   BigInt bi2("-28260972");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("28261873", out.str());
+}
+
+TEST(BigIntOperatorSubtractAssign_LeftPositiveRightNegative_RightShorter)
+{
+   BigInt bi1("28260972");
+   BigInt bi2("-901");
+   bi1 -= bi2;
+   ostringstream out;
+   out << bi1;
+   CHECK_EQUAL("28261873", out.str());
+}
+
+//-----------------------------------------------------------------------------
+// operator+
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorAdd)
+{
+   BigInt bi1("123");
+   BigInt bi2("456");
+   BigInt bi3(bi1 + bi2);
+   ostringstream out;
+   out << bi3;
+   CHECK_EQUAL("579", out.str());
+}
+
+TEST(BigIntOperatorAdd_CarryMostSignificantDigit)
+{
+	BigInt bi1("999");
+	BigInt bi2("888");
+	BigInt bi3(bi1 + bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("1887", out.str());
+}
+
+TEST(BigIntOperatorAdd_FirstNumberNegative)
+{
+	BigInt bi1("-123");
+	BigInt bi2("456");
+	BigInt bi3(bi1 + bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("333", out.str());
+}
+
+TEST(BigIntOperatorAdd_SecondNumberNegative)
+{
+	BigInt bi1("123");
+	BigInt bi2("-456");
+	BigInt bi3(bi1 + bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("-333", out.str());
+}
+
+TEST(BigIntOperatorAdd_BothNumbersNegative)
+{
+	BigInt bi1("-123");
+	BigInt bi2("-456");
+	BigInt bi3(bi1 + bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("-579", out.str());
+}
+
+TEST(BigIntOperatorAdd_LargeNumbers)
+{
+	BigInt bi1("111111111111111111111111111111111111111111111111111111111111");
+	BigInt bi2("222222222222222222222222222222222222222222222222222222222222");
+	BigInt bi3(bi1 + bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("333333333333333333333333333333333333333333333333333333333333", out.str());
+}
+
+//-----------------------------------------------------------------------------
+// operator-
+//-----------------------------------------------------------------------------
+TEST(BigIntOperatorSubtract)
+{
+   BigInt bi1("123");
+   BigInt bi2("456");
+   BigInt bi3(bi1 - bi2);
+   ostringstream out;
+   out << bi3;
+   CHECK_EQUAL("-333", out.str());
+}
+
+TEST(BigIntOperatorSubtract_FirstNumberNegative)
+{
+	BigInt bi1("-123");
+	BigInt bi2("456");
+	BigInt bi3(bi1 - bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("-579", out.str());
+}
+
+TEST(BigIntOperatorSubtract_SecondNumberNegative)
+{
+	BigInt bi1("123");
+	BigInt bi2("-456");
+	BigInt bi3(bi1 - bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("579", out.str());
+}
+
+TEST(BigIntOperatorSubtract_BothNumbersNegative)
+{
+	BigInt bi1("-123");
+	BigInt bi2("-456");
+	BigInt bi3(bi1 - bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("333", out.str());
+}
+
+TEST(BigIntOperatorSubtract_LargeNumbers)
+{
+	BigInt bi1("111111111111111111111111111111111111111111111111111111111111");
+	BigInt bi2("222222222222222222222222222222222222222222222222222222222222");
+	BigInt bi3(bi1 - bi2);
+	ostringstream out;
+	out << bi3;
+	CHECK_EQUAL("-111111111111111111111111111111111111111111111111111111111111", out.str());
+}
 
 //-----------------------------------------------------------------------------
 // operator==

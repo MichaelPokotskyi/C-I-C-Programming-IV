@@ -19,6 +19,7 @@ namespace Project1 {
     // ----------------------------------------------
     //              HELPER FUNCTIONS
     // ----------------------------------------------
+
     bool is_valid_num(const string& num) {
         for (char digit : num)
             if (digit < '0' or digit > '9')
@@ -42,11 +43,11 @@ namespace Project1 {
     }
 
     const tuple<string, string> get_larger_and_smaller(const string& num1,
-                                                 const string& num2) {
+        const string& num2) {
         string larger, smaller;
         if (num1.size() > num2.size() or
-           (num1.size() == num2.size() and 
-            num1 > num2)) {
+            (num1.size() == num2.size() and
+                num1 > num2)) {
             larger = num1;
             smaller = num2;
         }
@@ -59,6 +60,24 @@ namespace Project1 {
         add_leading_zeroes(smaller, larger.size() - smaller.size());
 
         return make_tuple(larger, smaller);
+    }
+
+    BigInt abs_(const BigInt& num) {
+        return num < 0 ? num : num; // -num : num;
+    }
+
+    BigInt BigInt::operator-() const {
+        BigInt temp;
+
+        temp.value = value;
+        if (value != "0") {
+            if (sign == '+')
+                temp.sign = '-';
+            else
+                temp.sign = '+';
+        }
+
+        return temp;
     }
 
     // ----------------------------------------------
@@ -155,7 +174,6 @@ namespace Project1 {
         }
         else
             return num.sign == '-';
-
     }
 
     bool operator<=(const BigInt& num, const BigInt& num1) {
@@ -174,125 +192,122 @@ namespace Project1 {
     //              BINARY ARITHMETIC
     // ----------------------------------------------
 
-    //const BigInt operator+(const BigInt& num, const BigInt& num1) {
-    //    // if the operands are of opposite signs, perform subtraction
-    //    if (num.sign == '+' and num1.sign == '-') {
-    //        BigInt rhs = num1;
-    //        rhs.sign = '+';
-    //        return num - rhs;
-    //    }
-    //    else if (num.sign == '-' and num1.sign == '+') {
-    //        BigInt lhs = num;
-    //        lhs.sign = '+';
-    //        return -(lhs - num1);
-    //    }
+    const BigInt operator+(const BigInt& num, const BigInt& num1) {
+        if (num.sign == '+' and num1.sign == '-') {
+            BigInt rhs = num1;
+            rhs.sign = '+';
+            return num - rhs;
+        }
+        else if (num.sign == '-' and num1.sign == '+') {
+            BigInt lhs = num;
+            lhs.sign = '+';
+            return -(lhs - num); // -(lhs - num);
+        }
+        // identify the numbers as `larger` and `smaller`
+        std::string larger, smaller;
+        std::tie(larger, smaller) = get_larger_and_smaller(num.value, num1.value);
 
-    //    // identify the numbers as `larger` and `smaller`
-    //    string larger, smaller;
-    //    tie(larger, smaller) = get_larger_and_smaller(num.value, num1.value);
+        BigInt result;      // the resultant sum
+        result.value = "";  // the value is cleared as the digits will be appended
+        short carry = 0, sum;
+        // add the two values
+        for (long i = larger.size() - 1; i >= 0; i--) {
+            sum = larger[i] - '0' + smaller[i] - '0' + carry;
+            result.value = std::to_string(sum % 10) + result.value;
+            carry = sum / (short)10;
+        }
+        if (carry)
+            result.value = std::to_string(carry) + result.value;
 
-    //    BigInt result;      // the resultant sum
-    //    result.value = "";  // the value is cleared as the digits will be appended
-    //    short carry = 0, sum;
-    //    // add the two values
-    //    for (long i = larger.size() - 1; i >= 0; i--) {
-    //        sum = larger[i] - '0' + smaller[i] - '0' + carry;
-    //        result.value = to_string(sum % 10) + result.value;
-    //        carry = sum / (short)10;
-    //    }
-    //    if (carry)
-    //        result.value = to_string(carry) + result.value;
+        // if the operands are negative, the result is negative
+        if (num.sign == '-' and result.value != "0")
+            result.sign = '-';
+        return result;
+    }
 
-    //    // if the operands are negative, the result is negative
-    //    if (num.sign == '-' and result.value != "0")
-    //        result.sign = '-';
+    const BigInt& BigInt::operator+=(const BigInt& num) {
+        *this = *this + num;
+        return *this;
+    }
 
-    //    return result;
-    //}
 
-    //const BigInt operator-(const BigInt& num, const BigInt& num1) {
-    //    // if the operands are of opposite signs, perform addition
-    //    if (this->sign == '+' and num.sign == '-') {
-    //        BigInt rhs = num;
-    //        rhs.sign = '+';
-    //        return *this + rhs;
-    //    }
-    //    else if (this->sign == '-' and num.sign == '+') {
-    //        BigInt lhs = *this;
-    //        lhs.sign = '+';
-    //        return -(lhs + num);
-    //    }
+    const BigInt operator-(const BigInt& num, const BigInt& num1) {
+        // if the operands are of opposite signs, perform addition
+        if (num.sign == '+' and num1.sign == '-') {
+            BigInt rhs = num1;
+            rhs.sign = '+';
+            return num + rhs;
+        }
+        else if (num.sign == '-' and num1.sign == '+') {
+            BigInt lhs = num;
+            lhs.sign = '+';
+            return -(lhs + num1); // -(lhs + num);
+        }
 
-    //    BigInt result;      // the resultant difference
-    //    // identify the numbers as `larger` and `smaller`
-    //    string larger, smaller;
-    //    if (abs(*this) > abs(num)) {
-    //        larger = this->value;
-    //        smaller = num.value;
+        BigInt result;      // the resultant difference
+        // identify the numbers as `larger` and `smaller`
+        std::string larger, smaller;
+        if (abs_(num) > abs_(num1)) {
+            larger = num.value;
+            smaller = num1.value;
 
-    //        if (this->sign == '-')      // -larger - -smaller = -result
-    //            result.sign = '-';
-    //    }
-    //    else {
-    //        larger = num.value;
-    //        smaller = this->value;
+            if (num.sign == '-')      // -larger - -smaller = -result
+                result.sign = '-';
+        }
+        else {
+            larger = num1.value;
+            smaller = num.value;
 
-    //        if (num.sign == '+')        // smaller - larger = -result
-    //            result.sign = '-';
-    //    }
-    //    // pad the smaller number with zeroes
-    //    add_leading_zeroes(smaller, larger.size() - smaller.size());
+            if (num1.sign == '+')        // smaller - larger = -result
+                result.sign = '-';
+        }
+        // pad the smaller number with zeroes
+        add_leading_zeroes(smaller, larger.size() - smaller.size());
 
-    //    result.value = "";  // the value is cleared as the digits will be appended
-    //    short difference;
-    //    long i, j;
-    //    // subtract the two values
-    //    for (i = larger.size() - 1; i >= 0; i--) {
-    //        difference = larger[i] - smaller[i];
-    //        if (difference < 0) {
-    //            for (j = i - 1; j >= 0; j--) {
-    //                if (larger[j] != '0') {
-    //                    larger[j]--;    // borrow from the j-th digit
-    //                    break;
-    //                }
-    //            }
-    //            j++;
-    //            while (j != i) {
-    //                larger[j] = '9';    // add the borrow and take away 1
-    //                j++;
-    //            }
-    //            difference += 10;   // add the borrow
-    //        }
-    //        result.value = to_string(difference) + result.value;
-    //    }
-    //    strip_leading_zeroes(result.value);
+        result.value = "";  // the value is cleared as the digits will be appended
+        short difference;
+        long i, j;
+        // subtract the two values
+        for (i = larger.size() - 1; i >= 0; i--) {
+            difference = larger[i] - smaller[i];
+            if (difference < 0) {
+                for (j = i - 1; j >= 0; j--) {
+                    if (larger[j] != '0') {
+                        larger[j]--;    // borrow from the j-th digit
+                        break;
+                    }
+                }
+                j++;
+                while (j != i) {
+                    larger[j] = '9';    // add the borrow and take away 1
+                    j++;
+                }
+                difference += 10;   // add the borrow
+            }
+            result.value = std::to_string(difference) + result.value;
+        }
+        strip_leading_zeroes(result.value);
 
-    //    // if the result is 0, set its sign as +
-    //    if (result.value == "0")
-    //        result.sign = '+';
+        // if the result is 0, set its sign as +
+        if (result.value == "0")
+            result.sign = '+';
 
-    //    return result;
-    //}
+        return result;
+    }
+
+    const BigInt& BigInt::operator-=(const BigInt& num) {
+        *this = *this - num;
+        return *this;
+    }
 
     // ----------------------------------------------
     //                  ASSIGNMENT
     // ----------------------------------------------
+
     const BigInt& BigInt::operator=(const BigInt& num)
     {
         value = num.value;
         sign = num.sign;
         return *this;
     }
-
-    //const BigInt& BigInt::operator+=(const BigInt& num)
-    //{
-    //    num = num + num;
-    //    return num;
-    //}
-
-    //const BigInt& BigInt::operator-=(const BigInt& num)
-    //{
-    //    num = num - num;
-    //    return num;
-    //}
 };
