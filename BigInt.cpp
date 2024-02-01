@@ -16,21 +16,27 @@ namespace Project1 {
     // ----------------------------------------------
 
     bool is_valid_num(const string& num) {
-        for (char digit : num)
-            if (digit < '0' or digit > '9')
+        for (char digit : num) {
+            if (digit < '0' or digit > '9') {
                 return false;
+            }
+        }
         return true;
     }
 
     void strip_leading_zeroes(string& num) {
         size_t i;
-        for (i = 0; i < num.size(); i++)
-            if (num[i] != '0')
+        for (i = 0; i < num.size(); i++){
+            if (num[i] != '0') {
                 break;
-        if (i == num.size())
+            }
+        }
+        if (i == num.size()) {
             num = "0";
-        else
+        }
+        else {
             num = num.substr(i);
+        }
     }
 
     void add_leading_zeroes(string& num, size_t num_zeroes) {
@@ -38,7 +44,7 @@ namespace Project1 {
     }
 
     const tuple<string, string> get_larger_and_smaller(const string& num1,
-        const string& num2) {
+                                                       const string& num2) {
         string larger, smaller;
         if (num1.size() > num2.size() or
             (num1.size() == num2.size() and
@@ -96,7 +102,7 @@ namespace Project1 {
     }
 
  BigInt::BigInt(const string& num) {
-     if (num == "" or num == "-" or num == "00") {
+      if (num == "" or num == "-" or num == "00") {
          throw invalid_argument("Expected an integer, got \'" + num + "\'");
      }
      if (num[0] == '+' or num[0] == '-') {     // check for sign
@@ -124,7 +130,9 @@ namespace Project1 {
          }
      }
      strip_leading_zeroes(value);
-}
+   }
+
+
 
     // ----------------------------------------------
     //                  IO streams
