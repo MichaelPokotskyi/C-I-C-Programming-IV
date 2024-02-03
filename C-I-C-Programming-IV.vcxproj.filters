@@ -87,6 +87,9 @@
     <ClCompile Include="UnitTest++\src\Win32\TimeHelpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HW5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UnitTest++\src\Checks.h">
