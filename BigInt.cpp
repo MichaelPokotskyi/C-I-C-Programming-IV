@@ -46,9 +46,9 @@ namespace Project1 {
     const tuple<string, string> get_larger_and_smaller(const string& num1,
                                                        const string& num2) {
         string larger, smaller;
-        if (num1.size() > num2.size() or
-            (num1.size() == num2.size() and
-                num1 > num2)) {
+        if (num1.size() > num2.size() || (num1.size() == num2.size() &&
+            num1 > num2)) 
+        {
             larger = num1;
             smaller = num2;
         }
@@ -71,10 +71,12 @@ namespace Project1 {
         BigInt temp;
         temp.value = value;
         if (value != "0") {
-            if (sign == '+')
+            if (sign == '+') {
                 temp.sign = '-';
-            else
+            }
+            else {
                 temp.sign = '+';
+            }
         }
         return temp;
     }
@@ -95,10 +97,12 @@ namespace Project1 {
 
     BigInt::BigInt(long long num) {
         value = to_string(abs(num));
-        if (num < 0)
+        if (num < 0) {
             sign = '-';
-        else
+        }
+        else {
             sign = '+';
+        }
     }
 
  BigInt::BigInt(const string& num) {
@@ -158,7 +162,7 @@ namespace Project1 {
     // ----------------------------------------------
 
     bool operator==(const BigInt& num, const BigInt& num1) {
-        return (num.sign == num1.sign) and (num.value == num1.value);
+        return (num.sign == num1.sign) && (num.value == num1.value);
     }
 
     bool operator!=(const BigInt& num, const BigInt& num1) {
@@ -168,24 +172,28 @@ namespace Project1 {
     bool operator<(const BigInt& num, const BigInt& num1) {
         if (num.sign == num1.sign) {
             if (num.sign == '+') {
-                if (num.value.length() == num1.value.length())
+                if (num.value.length() == num1.value.length()) {
                     return num.value < num1.value;
-                else
+                }
+                else {
                     return num.value.length() < num1.value.length();
+                }
             }
-            else
+            else {
                 return num.value > num1.value;
+            }
         }
-        else
+        else {
             return num.sign == '-';
+        }
     }
 
     bool operator<=(const BigInt& num, const BigInt& num1) {
-        return (num < num1) or (num == num1);
+        return (num < num1) || (num == num1);
     }
 
     bool operator>(const BigInt& num, const BigInt& num1) {
-        return !((num < num1) or (num == num1));
+        return !((num < num1) || (num == num1));
     }
 
     bool operator>=(const BigInt& num, const BigInt& num1) {
