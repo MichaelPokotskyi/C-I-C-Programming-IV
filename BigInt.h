@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <string>
-//#include <iosfwd>
 using namespace std;
 
 namespace Project1 {
@@ -32,7 +31,7 @@ namespace Project1 {
         const BigInt& operator=(const BigInt&);
         const BigInt& operator+=(const BigInt&);
         const BigInt& operator-=(const BigInt&);
-        BigInt operator-() const; // ??????
+        BigInt operator-() const;
     private: 
         // You decide what goes here... 
         string value;
