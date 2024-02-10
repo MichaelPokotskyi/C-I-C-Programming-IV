@@ -231,12 +231,14 @@ namespace Project1 {
             result.value = to_string(sum % 10) + result.value;
             carry = sum / (short)10;
         }
-        if (carry)
+        if (carry) {
             result.value = to_string(carry) + result.value;
+        }
 
-        // if the operands are negative, the result is negative
-        if (num.sign == '-' and result.value != "0")
+        // if the operands are negative, result is also negative
+        if (num.sign == '-' && result.value != "0") {
             result.sign = '-';
+        }
         return result;
     }
 
