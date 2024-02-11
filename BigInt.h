@@ -6,6 +6,10 @@
 // Win10, Visual C++ 2022, ISO C17
 // Class interface and data members
 
+// include guard
+#ifndef _BIGINT_H_
+#define _BIGINT_H_
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -38,3 +42,4 @@ namespace Project1 {
         char sign;
     };
 }
+#endif //_BIGINT_H_

@@ -8,7 +8,6 @@
 
 #include "BigInt.h"
 #include <algorithm>
-
 using namespace std;
 
 namespace Project1 {
@@ -71,18 +70,13 @@ namespace Project1 {
     //                 CONSTRUCTORS
     // ----------------------------------------------
 
-    BigInt::BigInt() {
-        value = "0";
-        sign = '+';
+    BigInt::BigInt() : value ("0"), sign ('+') {
     }
 
-    BigInt::BigInt(const BigInt& num) {
-        value = num.value;
-        sign = num.sign;
+    BigInt::BigInt(const BigInt& num) : value (num.value), sign (num.sign) {
     }
 
-    BigInt::BigInt(long long num) {
-        value = to_string(abs(num));
+    BigInt::BigInt(long long num) : value (to_string(abs(num))) {
         if (num < 0) {
             sign = '-';
         }
@@ -92,7 +86,7 @@ namespace Project1 {
     }
 
     BigInt::BigInt(const string& num) {
-        // some testing cases
+        // testing cases
         if (num == "" || num == "-" || num == "00") {
             throw invalid_argument("Expected integer, but have instead " + num + "\n");
         }
