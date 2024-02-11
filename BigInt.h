@@ -29,8 +29,8 @@ namespace Project1 {
     public: 
         BigInt();
         BigInt(const BigInt&);
-        // Throws invalid_argument if string malformed (contains anything other than a legally formatted number)
         BigInt(long long); 
+        // Throws invalid_argument if string malformed (contains anything other than a legally formatted number)
         BigInt(const string&);
         const BigInt& operator=(const BigInt&);
         const BigInt& operator+=(const BigInt&);

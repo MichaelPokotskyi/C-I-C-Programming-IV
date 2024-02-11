@@ -69,13 +69,16 @@ namespace Project1 {
     //                 CONSTRUCTORS
     // ----------------------------------------------
 
-    BigInt::BigInt() : value ("0"), sign ('+') {
+    BigInt::BigInt() : 
+        value ("0"), sign ('+') {
     }
 
-    BigInt::BigInt(const BigInt& num) : value (num.value), sign (num.sign) {
+    BigInt::BigInt(const BigInt& num) : 
+        value (num.value), sign (num.sign) {
     }
 
-    BigInt::BigInt(long long num) : value (to_string(abs(num))) {
+    BigInt::BigInt(long long num) : 
+        value (to_string(abs(num))) {
         if (num < 0) {
             sign = '-';
         }
@@ -85,11 +88,11 @@ namespace Project1 {
     }
 
     BigInt::BigInt(const string& num) {
-        // testing cases
+        // check testing cases
         if (num == "" || num == "-" || num == "00") {
             throw invalid_argument("Expected integer, but have instead " + num + "\n");
         }
-        // check for sign
+        // check sign
         if (num[0] == '+' || num[0] == '-') {     
             string number = num.substr(1);
             if (is_valid_num(number)) {
@@ -106,10 +109,10 @@ namespace Project1 {
             }
         }
         else {
-            // if no sign
+            // check if no sign
             if (is_valid_num(num)) {
                 value = num;
-                // positive by default
+                // + by default
                 sign = '+';
             }
             else {
@@ -220,7 +223,7 @@ namespace Project1 {
         add_lead_zero(smaller, larger.size() - smaller.size());
         BigInt result;
         result.value = "";
-        short carry = 0, sum;
+        int carry = 0, sum;
         for (long i = (long)larger.size() - 1; i >= 0; i--) {
             sum = larger[i] - '0' + smaller[i] - '0' + carry;
             result.value = to_string(sum % 10) + result.value;
@@ -229,7 +232,7 @@ namespace Project1 {
         if (carry) {
             result.value = to_string(carry) + result.value;
         }
-        // if the operands are negative, result is also negative
+        // if the operand are negative, result is also negative
         if (num.sign == '-' && result.value != "0") {
             result.sign = '-';
         }
@@ -237,7 +240,7 @@ namespace Project1 {
     }
 
     const BigInt operator-(const BigInt& num, const BigInt& num1) {
-        // if the operands are of opposite signs, perform addition
+        // if the operands has opposite signs, use addition
         if (num.sign == '+' && num1.sign == '-') {
             BigInt rhs = num1;
             rhs.sign = '+';
@@ -263,7 +266,7 @@ namespace Project1 {
         // add zeros to smaller number
         add_lead_zero(smaller, larger.size() - smaller.size());
         result.value = "";
-        short dif;
+        int dif;
         long i, j;
         // subtraction
         for (i = (long)larger.size() - 1; i >= 0; i--) {
