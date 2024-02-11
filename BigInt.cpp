@@ -25,8 +25,7 @@ namespace Project1 {
 
     void strip_lead_zero(string& num) {
         size_t i;
-        for (i = 0; i < num.size(); i++)
-        {
+        for (i = 0; i < num.size(); i++) {
             if (num[i] != '0') {
                 break;
             }
@@ -90,7 +89,8 @@ namespace Project1 {
         if (num == "" || num == "-" || num == "00") {
             throw invalid_argument("Expected integer, but have instead " + num + "\n");
         }
-        if (num[0] == '+' || num[0] == '-') {     // check for sign
+        // check for sign
+        if (num[0] == '+' || num[0] == '-') {     
             string number = num.substr(1);
             if (is_valid_num(number)) {
                 value = number;
@@ -109,7 +109,8 @@ namespace Project1 {
             // if no sign
             if (is_valid_num(num)) {
                 value = num;
-                sign = '+';    // positive by default
+                // positive by default
+                sign = '+';
             }
             else {
                 throw invalid_argument("Expected integer, but have instead " + num + "\n");
@@ -208,7 +209,7 @@ namespace Project1 {
         else if (num.sign == '-' && num1.sign == '+') {
             BigInt lhs = num;
             lhs.sign = '+';
-            return -(lhs - num1); // -(lhs - num);
+            return -(lhs - num1);
         }
         // get larger and smaller
         string larger = num.value, smaller = num1.value;

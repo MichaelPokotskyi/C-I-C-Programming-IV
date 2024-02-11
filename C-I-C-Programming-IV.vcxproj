@@ -150,6 +150,7 @@
     <ClCompile Include="HW3.cpp" />
     <ClCompile Include="CheckingAccount.h" />
     <ClCompile Include="HW5.cpp" />
+    <ClCompile Include="HW6.cpp" />
     <ClCompile Include="mainPr1.cpp" />
     <ClCompile Include="UnitTest++\src\AssertException.cpp" />
     <ClCompile Include="UnitTest++\src\Checks.cpp" />
