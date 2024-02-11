@@ -148,11 +148,17 @@ namespace Project1 {
     // ----------------------------------------------
 
     bool operator==(const BigInt& num, const BigInt& num1) {
-        return (num.sign == num1.sign) && (num.value == num1.value);
+        if (num.sign == num1.sign && num.value == num1.value) {
+            return true;
+        }
+        return false;
     }
 
     bool operator!=(const BigInt& num, const BigInt& num1) {
-        return !(num == num1);
+        if (num == num1) {
+            return false;
+        }
+        return true;
     }
 
     bool operator<(const BigInt& num, const BigInt& num1) {
@@ -175,15 +181,24 @@ namespace Project1 {
     }
 
     bool operator<=(const BigInt& num, const BigInt& num1) {
-        return (num < num1) || (num == num1);
+        if (num < num1 || num == num1) {
+            return true;
+        }
+        return false;
     }
 
     bool operator>(const BigInt& num, const BigInt& num1) {
-        return !((num < num1) || (num == num1));
+        if (!(num < num1 || num == num1)) {
+            return true;
+        }
+        return false;
     }
 
     bool operator>=(const BigInt& num, const BigInt& num1) {
-        return !(num < num1);
+        if (!(num < num1)) {
+            return true;
+        }
+        return false;
     }
 
     // ----------------------------------------------
@@ -241,10 +256,8 @@ namespace Project1 {
         BigInt result;
         // get larger and smaller
         string larger = num.value, smaller = num1.value;
-        if (abs_(num) > abs_(num1)) {
-            if (num.sign == '-') {
+        if (abs_(num) > abs_(num1) && num.sign == '-') {
                 result.sign = '-';
-            }
         }
         if (abs_(num) < abs_(num1)) {
             smaller.swap(larger);
