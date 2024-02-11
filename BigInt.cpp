@@ -7,7 +7,8 @@
 // Class implementation
 
 #include "BigInt.h"
-#include <tuple>
+#include <algorithm>
+
 using namespace std;
 
 namespace Project1 {
@@ -16,19 +17,17 @@ namespace Project1 {
     // ----------------------------------------------
 
     bool is_valid_num(const string& num) {
-        char digit;
-        for(size_t i = 0; i < num.size(); ++i){
-            digit = num[i];
-            if (digit < '0' || digit > '9') {
-                return false;
-                }
+        for (char digit : num) {
+                if (digit < '0' or digit > '9')
+                    return false;
         }
         return true;
     }
 
     void strip_lead_zero(string& num) {
         size_t i;
-        for (i = 0; i < num.size(); i++){
+        for (i = 0; i < num.size(); i++)
+        {
             if (num[i] != '0') {
                 break;
             }
@@ -45,30 +44,12 @@ namespace Project1 {
         num = string(num_zeroes, '0') + num;
     }
 
-    const tuple<string, string> larger_and_smaller(const string& num1,
-                                                       const string& num2) {
-        string larger, smaller;
-        if (num1.size() > num2.size() || (num1.size() == num2.size() &&
-            num1 > num2)) 
-        {
-            larger = num1;
-            smaller = num2;
-        }
-        else {
-            larger = num2;
-            smaller = num1;
-        }
-        // pad the smaller number with zeroes
-        add_lead_zero(smaller, larger.size() - smaller.size());
-        return make_tuple(larger, smaller);
-    }
-
     BigInt abs_(const BigInt& num) {
         if (num < 0) {
-            return -num; 
+            return -num;
         }
-        else { 
-            return num; 
+        else {
+            return num;
         }
     }
 
@@ -110,37 +91,38 @@ namespace Project1 {
         }
     }
 
- BigInt::BigInt(const string& num) {
-     // some testing cases
-      if (num == "" || num == "-" || num == "00") {
-         throw invalid_argument("Expected integer, but have instead " + num + "\n");
-     }
-     if (num[0] == '+' || num[0] == '-') {     // check for sign
-         string number = num.substr(1);
-         if (is_valid_num(number)) {
-             value = number;
-             if (num[0] == '-' && number == "0") {
-                 sign = '+'; 
-             }
-             else {
-                 sign = num[0];
-             }
-         }
-         else {
-             throw invalid_argument("Expected integer, but have instead " + num + "\n");
-         }
-     }
-     else {      // if no sign
-         if (is_valid_num(num)) {
-             value = num;
-             sign = '+';    // positive by default
-         }
-         else {
-             throw invalid_argument("Expected integer, but have instead " + num + "\n");
-         }
-     }
-     strip_lead_zero(value);
-   }
+    BigInt::BigInt(const string& num) {
+        // some testing cases
+        if (num == "" || num == "-" || num == "00") {
+            throw invalid_argument("Expected integer, but have instead " + num + "\n");
+        }
+        if (num[0] == '+' || num[0] == '-') {     // check for sign
+            string number = num.substr(1);
+            if (is_valid_num(number)) {
+                value = number;
+                if (num[0] == '-' && number == "0") {
+                    sign = '+';
+                }
+                else {
+                    sign = num[0];
+                }
+            }
+            else {
+                throw invalid_argument("Expected integer, but have instead " + num + "\n");
+            }
+        }
+        else {
+            // if no sign
+            if (is_valid_num(num)) {
+                value = num;
+                sign = '+';    // positive by default
+            }
+            else {
+                throw invalid_argument("Expected integer, but have instead " + num + "\n");
+            }
+        }
+        strip_lead_zero(value);
+    }
 
     // ----------------------------------------------
     //                  IO streams
@@ -219,10 +201,13 @@ namespace Project1 {
             lhs.sign = '+';
             return -(lhs - num1); // -(lhs - num);
         }
-        // get larger or smaller
-        string larger, smaller;
-        tie(larger, smaller) = larger_and_smaller(num.value, num1.value);
-
+        // get larger and smaller
+        string larger = num.value, smaller = num1.value;
+        if (abs_(num) < abs_(num1)) {
+            smaller.swap(larger);
+        }
+        // add zeros to smaller number
+        add_lead_zero(smaller, larger.size() - smaller.size());
         BigInt result;
         result.value = "";
         short carry = 0, sum;
@@ -234,7 +219,6 @@ namespace Project1 {
         if (carry) {
             result.value = to_string(carry) + result.value;
         }
-
         // if the operands are negative, result is also negative
         if (num.sign == '-' && result.value != "0") {
             result.sign = '-';
@@ -255,26 +239,20 @@ namespace Project1 {
             return -(lhs + num1);
         }
         BigInt result;
-        // get larger or smaller
-        string larger, smaller;
+        // get larger and smaller
+        string larger = num.value, smaller = num1.value;
         if (abs_(num) > abs_(num1)) {
-            larger = num.value;
-            smaller = num1.value;
-
-            // -larger - -smaller = -result
             if (num.sign == '-') {
                 result.sign = '-';
             }
         }
-        else {
-            larger = num1.value;
-            smaller = num.value;
-
-            // smaller - larger = -result
+        if (abs_(num) < abs_(num1)) {
+            smaller.swap(larger);
             if (num1.sign == '+') {
                 result.sign = '-';
             }
         }
+        // add zeros to smaller number
         add_lead_zero(smaller, larger.size() - smaller.size());
         result.value = "";
         short dif;
