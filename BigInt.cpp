@@ -7,7 +7,6 @@
 // Class implementation
 
 #include "BigInt.h"
-#include <algorithm>
 using namespace std;
 
 namespace Project1 {
@@ -15,7 +14,7 @@ namespace Project1 {
     //              HELPER FUNCTIONS
     // ----------------------------------------------
 
-    bool is_valid_num(const string& num) {
+    bool is_valid(const string& num) {
         for (char digit : num) {
                 if (digit < '0' or digit > '9')
                     return false;
@@ -78,7 +77,8 @@ namespace Project1 {
     }
 
     BigInt::BigInt(long long num) : 
-        value (to_string(abs(num))) {
+        // value are string field!
+        value(to_string(abs(num))) {
         if (num < 0) {
             sign = '-';
         }
@@ -95,7 +95,7 @@ namespace Project1 {
         // check sign
         if (num[0] == '+' || num[0] == '-') {     
             string number = num.substr(1);
-            if (is_valid_num(number)) {
+            if (is_valid(number)) {
                 value = number;
                 if (num[0] == '-' && number == "0") {
                     sign = '+';
@@ -110,7 +110,7 @@ namespace Project1 {
         }
         else {
             // check if no sign
-            if (is_valid_num(num)) {
+            if (is_valid(num)) {
                 value = num;
                 // + by default
                 sign = '+';
