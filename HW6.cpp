@@ -4,7 +4,6 @@
 #include<list>
 #include "UnitTest++/src/UnitTest++.h"
 using namespace std;
-using std::boolalpha;
 
 template <typename BidirectionalIterator>
 bool palindrome(BidirectionalIterator first, BidirectionalIterator last) {
@@ -14,6 +13,7 @@ bool palindrome(BidirectionalIterator first, BidirectionalIterator last) {
     last--;
     while (first != last) { 
         if (*first != *last) { 
+            return false;
         }
         first++;
         if (first == last) break;
@@ -25,17 +25,15 @@ bool palindrome(BidirectionalIterator first, BidirectionalIterator last) {
 template <typename ForwardIterator, typename OutputIterator>
 void compress(ForwardIterator first, ForwardIterator last, OutputIterator result) {
     if (first == last) {
-        return false;
+        return;
     }
-
     ForwardIterator second = first; 
-    *result = *first;
+    *result = *first; 
     result++; 
-    second++; 
-
-    while (second != last) {
+    second++;
+    while (second != last) { 
         if (*second != *first) {
-            *result = *second;
+            *result = *second; 
             first = second;
             result++;
         }
@@ -55,7 +53,6 @@ TEST(TestEmptyList)
 
 TEST(TestOddElementsList_TRUE)
 {
-
     ostringstream out;
     //string out;
     int data[] = { 1,2,1 };
@@ -95,9 +92,11 @@ TEST(TestEvenElementsList_FALSE)
     CHECK_EQUAL("0", out.str());
 }
 
+TEST(Test) {}
+
 int main() {
 
-    return UnitTest::RunAllTests();
+    UnitTest::RunAllTests();
 
     // empty list compress
     list<int> ls5, ls6;
@@ -107,21 +106,21 @@ int main() {
         cout << ele << " ";
     } cout << "\n";
 
-    //// compress list containing no consecutive duplicates
-    //int data4[] = { 1,2,3,1,2,3 };
-    //list<int> ls7(data4, data4 + 6), ls8;
-    //compress(ls7.begin(), ls7.end(), back_inserter(ls8));
+    // compress list containing no consecutive duplicates
+    int data4[] = { 1,2,3,1,2,3 };
+    list<int> ls7(data4, data4 + 6), ls8;
+    compress(ls7.begin(), ls7.end(), back_inserter(ls8));
 
-    //for (auto ele : ls8) {
-    //    cout << ele << " ";
-    //} cout << "\n";
+    for (auto ele : ls8) {
+        cout << ele << " ";
+    } cout << "\n";
 
-    //// compress list containing consecutive duplicates
-    //int data5[] = { 1,1,2,2,1,1 };
-    //list<int> ls9(data5, data5 + 6), ls10;
-    //compress(ls9.begin(), ls9.end(), back_inserter(ls10));
+    // compress list containing consecutive duplicates
+    int data5[] = { 1,1,2,2,1,1 };
+    list<int> ls9(data5, data5 + 6), ls10;
+    compress(ls9.begin(), ls9.end(), back_inserter(ls10));
 
-    //for (auto ele : ls10) {
-    //    cout << ele << " ";
-    //} cout << "\n";
+    for (auto ele : ls10) {
+        cout << ele << " ";
+    } cout << "\n";
 }
