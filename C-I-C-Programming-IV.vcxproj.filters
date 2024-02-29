@@ -93,12 +93,24 @@
     <ClCompile Include="HW6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="mainPr2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HW7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HW8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UnitTest++\src\Checks.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="BigInt.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dlist.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

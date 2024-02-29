@@ -151,7 +151,10 @@
     <ClCompile Include="CheckingAccount.h" />
     <ClCompile Include="HW5.cpp" />
     <ClCompile Include="HW6.cpp" />
+    <ClCompile Include="HW7.cpp" />
+    <ClCompile Include="HW8.cpp" />
     <ClCompile Include="mainPr1.cpp" />
+    <ClCompile Include="mainPr2.cpp" />
     <ClCompile Include="UnitTest++\src\AssertException.cpp" />
     <ClCompile Include="UnitTest++\src\Checks.cpp" />
     <ClCompile Include="UnitTest++\src\CurrentTest.cpp" />
@@ -172,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigInt.h" />
+    <ClInclude Include="dlist.h" />
     <ClInclude Include="UnitTest++\src\Checks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
