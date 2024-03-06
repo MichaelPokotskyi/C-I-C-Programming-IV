@@ -4,7 +4,7 @@
 // Raymond Mitchell IV
 // dlist.h
 // Win10, Visual C++ 2022, ISO C17
-// Class interface and data members
+// Implementation of DLIST
 
 // include guard
 #ifndef DLIST_H
@@ -75,8 +75,8 @@ namespace Project2
         const iterator end() const;
 
     private:
+        // You decide what goes here
         class node;
-
         node* head_;
         node* tail_;
         size_type size_;
@@ -84,7 +84,6 @@ namespace Project2
 
     };
 
-    //dlist associated iteartor class
     template <typename T>
     class dlist<T>::iterator : public std::iterator<bidirectional_iterator_tag, T>
     {
@@ -93,34 +92,30 @@ namespace Project2
     public:
         typedef const T const_reference;
 
-        //constructors
         iterator();
         explicit iterator(typename dlist<T>::node*);
 
-        //comparison operators
         bool operator==(const iterator&) const;
         bool operator!=(const iterator&) const;
 
-        //derference and arrow operators
         T& operator*();
         const T& operator*() const;
         T* operator->();
         const T* operator->() const;
 
-        //increment and decrement operators
         iterator& operator++();
         const iterator operator++(int);
         iterator& operator--();
         const iterator operator--(int);
 
     private:
+        // You decide what goes here
         node* nodePtr_;
     };
 
-    //class that defines the individual nodes that make up the dlist
+    //class defines the individual nodes of dlist
     template <typename T>
-    class dlist<T>::node
-    {
+    class dlist<T>::node {
     public:
         node(const T& newData = T(), node* n = nullptr, node* p = nullptr)
             : data(newData), next(n), previous(p) {}
@@ -129,134 +124,107 @@ namespace Project2
         T data;
     };
 
-
-    /*
-     * Dlist Class Implementations
-     */
-
-     //default constructor
-    template<typename T>
-    dlist<T>::dlist()
-    {
+    // DLIST
+    //default constructor
+    template<typename T> 
+    dlist<T>::dlist() {
         head_ = new node();
         tail_ = new node();
         size_ = 0;
-
         head_->next = tail_;
         tail_->previous = head_;
     }
 
     //copy constructor
     template<typename T>
-    dlist<T>::dlist(const dlist& other)
-    {
+    dlist<T>::dlist(const dlist& other) {
         head_ = new node();
         tail_ = new node();
         size_ = 0;
-
         head_->next = tail_;
         tail_->previous = head_;
 
-        if (!other.empty())
-        {
+        if (!other.empty()) {
             node* tempNode = other.head_->next;
-
-            while (tempNode->next != nullptr)
-            {
+            while (tempNode->next != nullptr) {
                 this->push_back(tempNode->data);
                 tempNode = tempNode->next;
             }
         }
     }
 
-    //destructor for dlist
+    //destructor
     template<typename T>
-    dlist<T>::~dlist()
-    {
-        //pop each node out of the dlist and destroy ('pop_front' handles deletion)
-        while (!empty())
-        {
+    dlist<T>::~dlist() {
+        while (!empty()) {
             this->pop_front();
         }
-
         delete head_;
         delete tail_;
     }
 
-    //assignment operator for dlist
+    //assignment operator
     template<typename T>
-    dlist<T>& dlist<T>::operator=(const dlist& other)
-    {
+    dlist<T>& dlist<T>::operator=(const dlist& other) {
         dlist<T> tempDList(other);
         Swap(tempDList);
-
         return *this;
     }
 
-    //private function to swap two dlist objects (used for operator assignment)
+    //swap two objects
     template<typename T>
-    void dlist<T>::Swap(dlist& other)
-    {
+    void dlist<T>::Swap(dlist& other) {
         swap(head_, other.head_);
         swap(tail_, other.tail_);
         swap(size_, other.size_);
     }
 
-    //function to determine if the dlist is empty
+    //is empty
     template<typename T>
-    bool dlist<T>::empty() const
-    {
+    bool dlist<T>::empty() const {
         return (size_ == 0);
     }
 
-    //function to determine the size of the dlist
+    //size of dlist
     template<typename T>
-    typename dlist<T>::size_type dlist<T>::size() const
-    {
+    typename dlist<T>::size_type dlist<T>::size() const {
         return size_;
     }
 
-    //return data at front of dlist
+    //return dlist front
     template<typename T>
-    T& dlist<T>::front()
-    {
+    T& dlist<T>::front() {
         return head_->next->data;
     }
 
-    //return data at front of dlist (const)
+    //return dlist front (const)
     template<typename T>
-    const T& dlist<T>::front() const
-    {
+    const T& dlist<T>::front() const {
         return head_->next->data;
     }
 
-    //return data at back of dlist
+    //return dlist back 
     template<typename T>
-    T& dlist<T>::back()
-    {
+    T& dlist<T>::back() {
         return tail_->previous->data;
     }
 
-    //return data at back of dlist (const)
+    //return dlist back (const)
     template<typename T>
-    const T& dlist<T>::back() const
-    {
+    const T& dlist<T>::back() const {
         return tail_->previous->data;
     }
 
-    //add data to the front of the dlist
+    //add data to front
     template<typename T>
-    void dlist<T>::push_front(const T& insertedData)
-    {
-        if (empty())
-        {
+    void dlist<T>::push_front(const T& insertedData) {
+        if (empty()) {
             node* newNode = new node(insertedData, tail_, head_);
             head_->next = newNode;
             tail_->previous = newNode;
             ++size_;
         }
-        else
-        {
+        else {
             node* tempFirst = head_->next;
             node* newNode = new node(insertedData, tempFirst, head_);
             tempFirst->previous = newNode;
@@ -265,16 +233,13 @@ namespace Project2
         }
     }
 
-    //remove data from front of dlist
+    //remove data from front
     template<typename T>
-    void dlist<T>::pop_front()
-    {
-        if (empty())
-        {
-            cerr << "Dlist is empty. Nothing to remove from front.";
+    void dlist<T>::pop_front() {
+        if (empty()) {
+            cerr << "Dlist empty.";
         }
-        else
-        {
+        else {
             node* firstNode = head_->next;
             head_->next = firstNode->next;
             delete firstNode;
@@ -282,19 +247,16 @@ namespace Project2
         }
     }
 
-    //insert data in back of dlist object
+    //insert data in back
     template<typename T>
-    void dlist<T>::push_back(const T& insertedData)
-    {
-        if (empty())
-        {
+    void dlist<T>::push_back(const T& insertedData) {
+        if (empty()) {
             node* newNode = new node(insertedData, tail_, head_);
             head_->next = newNode;
             tail_->previous = newNode;
             ++size_;
         }
-        else
-        {
+        else {
             node* tempLast = tail_->previous;
             node* newNode = new node(insertedData, tail_, tempLast);
             tempLast->next = newNode;
@@ -303,16 +265,13 @@ namespace Project2
         }
     }
 
-    //remove data from the back of the dlist object
+    //remove data from back
     template<typename T>
-    void dlist<T>::pop_back()
-    {
-        if (empty())
-        {
-            cerr << "Dlist is empty. Nothing to remove from back.";
+    void dlist<T>::pop_back() {
+        if (empty()) {
+            cerr << "Dlist empty.";
         }
-        else
-        {
+        else {
             node* lastNode = tail_->previous;
             tail_->previous = lastNode->previous;
             delete lastNode;
@@ -320,266 +279,209 @@ namespace Project2
         }
     }
 
-    //function to insert a node at a given position
+    //insert a node to given position
     template<typename T>
-    typename dlist<T>::iterator dlist<T>::insert(iterator position, const T& insertedData)
-    {
-        //if dlist is empty or inserting at end, simply push_back and return position entered
-        if (empty() || position == end())
-        {
+    typename dlist<T>::iterator dlist<T>::insert(iterator position, const T& insertedData) {
+        if (empty() || position == end()) {
             push_back(insertedData);
             position = find(begin(), end(), insertedData);
             return position;
         }
-        else
-        {
+        else {
             node* nodeMove = head_->next;
-
-            //move through nodes in dlist - when found correct position, insert node data
-            while (nodeMove != tail_)
-            {
-
-                if (nodeMove->data == *position)
-                {
-
+            while (nodeMove != tail_) {
+                if (nodeMove->data == *position) {
                     node* tempNext = nodeMove->next;
                     node* newNode = new node(insertedData, tempNext, nodeMove);
-
                     nodeMove->next = newNode;
                     tempNext->previous = newNode;
-
                     ++size_;
                     position = find(begin(), end(), insertedData);
                     return position;
-
                 }
-                else
-                {
+                else {
                     nodeMove = nodeMove->next;
                 }
             }
         }
     }
 
-    //operator to erase a node at a specified location
+    //erase node in specified location
     template<typename T>
-    typename dlist<T>::iterator dlist<T>::erase(iterator position)
-    {
-        if (empty())
-        {
-            cerr << "Dlist is empty. Nothing to erase.";
+    typename dlist<T>::iterator dlist<T>::erase(iterator position) {
+        if (empty()) {
+            cerr << "Dlist empty.";
         }
-        else
-        {
+        else {
             node* nodeMove = head_->next;
-
-            //move through nodes in dlist - when found correct position, erase data at location
-            while (nodeMove != tail_)
-            {
-                if (nodeMove->data == *position)
-                {
+            while (nodeMove != tail_) {
+                if (nodeMove->data == *position) {
                     node* tempPrev = nodeMove->previous;
                     node* tempNext = nodeMove->next;
-
                     tempPrev->next = tempNext;
                     tempNext->previous = tempPrev;
-
                     --size_;
                     ++position;
-
                     delete nodeMove;
                     return position;
                 }
-                else
-                {
+                else {
                     nodeMove = nodeMove->next;
                 }
             }
         }
     }
 
-    //return iterator to beginning of dlist container
+    //return iterator to beginning of dlist
     template<typename T>
-    typename dlist<T>::iterator dlist<T>::begin()
-    {
+    typename dlist<T>::iterator dlist<T>::begin() {
         return iterator(head_->next);
     }
 
-    //return iterator to beginning of dlist container (const)
+    //return iterator to beginning of dlist (const)
     template<typename T>
-    const typename dlist<T>::iterator dlist<T>::begin() const
-    {
+    const typename dlist<T>::iterator dlist<T>::begin() const {
         return iterator(head_->next);
     }
 
-    //return iterator to one past the end of dlist container
+    //return iterator to one past the end of dlist
     template<typename T>
-    typename dlist<T>::iterator dlist<T>::end()
-    {
+    typename dlist<T>::iterator dlist<T>::end() {
         return iterator(tail_);
     }
 
-    //return iterator to one past the end of dlist container (const)
+    //return iterator to one past the end of dlist (const)
     template<typename T>
-    const typename dlist<T>::iterator dlist<T>::end() const
-    {
+    const typename dlist<T>::iterator dlist<T>::end() const {
         return iterator(tail_);
     }
 
     //constructor for iterator range
     template<typename T>
     template<typename InputIterator>
-    dlist<T>::dlist(InputIterator first, InputIterator last)
-    {
+    dlist<T>::dlist(InputIterator first, InputIterator last) {
         head_ = new node();
         tail_ = new node();
         size_ = 0;
-
         head_->next = tail_;
         tail_->previous = head_;
-
-        //move through container to copy and push to dlist
-        while (first != last)
-        {
+        while (first != last) {
             this->push_back(*first++);
         }
     }
 
-    //equality operator
+    //equality
     template<typename T>
-    bool dlist<T>::operator==(const dlist& rhs) const
-    {
+    bool dlist<T>::operator==(const dlist& rhs) const {
         if (size_ != rhs.size_)
             return false;
-
         return equal(begin(), end(), rhs.begin());
     }
 
-    //inequality operator
+    //inequality
     template<typename T>
-    bool dlist<T>::operator!=(const dlist& rhs) const
-    {
+    bool dlist<T>::operator!=(const dlist& rhs) const {
         return !(*this == rhs);
     }
 
-    //less-than operator
+    //less-than
     template<typename T>
-    bool dlist<T>::operator<(const dlist& rhs) const
-    {
+    bool dlist<T>::operator<(const dlist& rhs) const {
         return size_ < rhs.size_;
     }
 
-    //less-than or equal-to operator
+    //less-than or equal-to
     template<typename T>
-    bool dlist<T>::operator<=(const dlist& rhs) const
-    {
+    bool dlist<T>::operator<=(const dlist& rhs) const {
         return *this < rhs || *this == rhs;
     }
 
-    //greater-than operator
+    //greater-than
     template<typename T>
-    bool dlist<T>::operator>(const dlist& rhs) const
-    {
+    bool dlist<T>::operator>(const dlist& rhs) const {
         return !(*this < rhs || *this == rhs);
     }
 
-    //greater-than or equal-to operator
+    //greater-than or equal-to
     template<typename T>
-    bool dlist<T>::operator>=(const dlist& rhs) const
-    {
+    bool dlist<T>::operator>=(const dlist& rhs) const {
         return !(*this < rhs);
     }
 
-
-    /*
-     * Iterator Class Implementations
-     */
-
-     //default iterator constructor
+    // ITERATOR
+    //default constructor
     template<typename T>
-    dlist<T>::iterator::iterator()
-    {
+    dlist<T>::iterator::iterator() {
         nodePtr_ = nullptr;
     }
 
-    //iterator constructor with node passed as argument
+    //constructor with node
     template <typename T>
-    dlist<T>::iterator::iterator(typename dlist<T>::node* passedPtr)
-    {
+    dlist<T>::iterator::iterator(typename dlist<T>::node* passedPtr) {
         nodePtr_ = passedPtr;
     }
 
-    //assignment operator
+    //assignment
     template <typename T>
-    bool dlist<T>::iterator::operator==(const iterator& rhs) const
-    {
+    bool dlist<T>::iterator::operator==(const iterator& rhs) const {
         return nodePtr_ == rhs.nodePtr_;
     }
 
-    //inequality operator
+    //inequality
     template <typename T>
-    bool dlist<T>::iterator::operator!=(const iterator& rhs) const
-    {
+    bool dlist<T>::iterator::operator!=(const iterator& rhs) const {
         return !(*this == rhs);
     }
 
-    //dereference operator
+    //dereference
     template <typename T>
-    T& dlist<T>::iterator::operator*()
-    {
+    T& dlist<T>::iterator::operator*() {
         return (*nodePtr_).data;
     }
 
-    //dereference operator (const)
+    //dereference (const)
     template <typename T>
-    const T& dlist<T>::iterator::operator*() const
-    {
+    const T& dlist<T>::iterator::operator*() const {
         return (*nodePtr_).data;
     }
 
-    //arrow operator
+    //arrow
     template <typename T>
-    T* dlist<T>::iterator::operator->()
-    {
+    T* dlist<T>::iterator::operator->() {
         return &((*nodePtr_).data);
     }
 
-    //arrow operator (const)
+    //arrow (const)
     template <typename T>
-    const T* dlist<T>::iterator::operator->() const
-    {
+    const T* dlist<T>::iterator::operator->() const {
         return &((*nodePtr_).data);
     }
 
-    //pre-increment operator
+    //pre-increment
     template <typename T>
-    typename dlist<T>::iterator& dlist<T>::iterator::operator++()
-    {
+    typename dlist<T>::iterator& dlist<T>::iterator::operator++() {
         nodePtr_ = nodePtr_->next;
         return *this;
     }
 
-    //post-increment operator
+    //post-increment
     template <typename T>
-    const typename dlist<T>::iterator dlist<T>::iterator::operator++(int)
-    {
+    const typename dlist<T>::iterator dlist<T>::iterator::operator++(int) {
         iterator temp(*this);
         operator++();
         return temp;
     }
 
-    //pre-decrement operator
+    //pre-decrement
     template <typename T>
-    typename dlist<T>::iterator& dlist<T>::iterator::operator--()
-    {
+    typename dlist<T>::iterator& dlist<T>::iterator::operator--() {
         nodePtr_ = nodePtr_->previous;
         return *this;
     }
 
-    //post-decrement operator
+    //post-decrement
     template <typename T>
-    const typename dlist<T>::iterator dlist<T>::iterator::operator--(int)
-    {
+    const typename dlist<T>::iterator dlist<T>::iterator::operator--(int) {
         iterator temp(*this);
         operator--();
         return temp;
